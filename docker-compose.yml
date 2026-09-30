@@ -1,0 +1,44 @@
+# 直接拉取已构建好的镜像启动（开箱可用，无需本地构建）。
+#
+#   docker compose up -d
+#
+# 前端产物、地图瓦片、官方点位数据都已在镜像里；打卡点与照片存在具名卷中，容器重建不丢。
+# 想自己从源码构建，用：docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+
+services:
+  ubr-map:
+    image: ghcr.io/chouhx/travel:latest
+    container_name: ubr-map
+    restart: unless-stopped
+
+    ports:
+      # 绑定地址可配：默认只监听本机，配合反向代理对外提供服务更安全。
+      # 想直接暴露到局域网/公网，把 UBR_BIND 设为 0.0.0.0（注意同时改掉默认口令）。
+      - "${UBR_BIND:-127.0.0.1}:${UBR_PORT:-8787}:8787"
+
+    environment:
+      # 初始管理员口令：仅在数据卷里还没有口令时生效。
+      # 之后请登录管理后台修改，改这里不会再覆盖。
+      UBR_ADMIN_PASSWORD: "${UBR_ADMIN_PASSWORD:-ubr2024}"
+      # 登录凭证有效期（小时）
+      UBR_SESSION_TTL_HOURS: "${UBR_SESSION_TTL_HOURS:-168}"
+      # 单张照片体积上限（MB）
+      UBR_MAX_PHOTO_MB: "${UBR_MAX_PHOTO_MB:-8}"
+
+    volumes:
+      # 打卡点数据库 + 上传的照片。备份就是备份这个卷。
+      - ubr-data:/data
+      # 想单独更新地图瓦片而不重建镜像，把下面两行取消注释并放置对应目录：
+      # - ./tiles:/app/tiles:ro
+      # - ./data:/app/data:ro
+
+    # 镜像里已有 HEALTHCHECK，这里只是让 compose 也能看到状态
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8787/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+volumes:
+  ubr-data:

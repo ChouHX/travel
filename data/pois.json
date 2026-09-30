@@ -1,0 +1,2197 @@
+[
+ {
+  "id": "481",
+  "name": "侏罗纪营地",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.6822076,
+  "lat": 39.8568611,
+  "coordValid": true,
+  "img": "data/img/481.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/zhuluojiyingde",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室内"
+  ],
+  "imgLocal": "data/img/481.jpg",
+  "marker": "data/img/marker/481.webp"
+ },
+ {
+  "id": "133",
+  "name": "功夫熊猫：神龙大侠之旅",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683198,
+  "lat": 39.85874,
+  "coordValid": true,
+  "img": "data/img/133.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/gongfuxiongmaoshenlongdaxiazhilu",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/133.jpg",
+  "marker": "data/img/marker/133.webp"
+ },
+ {
+  "id": "188",
+  "name": "变形金刚：火种源争夺战",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "变形金刚基地",
+  "lng": 116.680795,
+  "lat": 39.85841,
+  "coordValid": true,
+  "img": "data/img/188.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/bianxingjinganghuozhongyuanzhengduozhan",
+  "tags": [
+   "变形金刚基地",
+   "室内"
+  ],
+  "imgLocal": "data/img/188.jpg",
+  "marker": "data/img/marker/188.webp"
+ },
+ {
+  "id": "152",
+  "name": "阿宝功夫训练营",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.684618,
+  "lat": 39.85836,
+  "coordValid": true,
+  "img": "data/img/152.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/abaogongfuxunlianying",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/152.jpg",
+  "marker": "data/img/marker/152.webp"
+ },
+ {
+  "id": "311",
+  "name": "功夫游戏",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683995,
+  "lat": 39.858816,
+  "coordValid": true,
+  "img": "data/img/311.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/gongfuyouxi",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/311.jpg",
+  "marker": "data/img/marker/311.webp"
+ },
+ {
+  "id": "159",
+  "name": "神偷奶爸小黄人闹翻天",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "小黄人乐园",
+  "lng": 116.684101,
+  "lat": 39.853856,
+  "coordValid": true,
+  "img": "data/img/159.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/shentounaibaxiaohuangrennaofantian",
+  "tags": [
+   "小黄人乐园",
+   "室内"
+  ],
+  "imgLocal": "data/img/159.jpg",
+  "marker": "data/img/marker/159.webp"
+ },
+ {
+  "id": "151",
+  "name": "鹰马飞行™",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.687062,
+  "lat": 39.856361,
+  "coordValid": true,
+  "img": "data/img/151.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/yingmafeixingtm",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室外"
+  ],
+  "imgLocal": "data/img/151.jpg",
+  "marker": "data/img/marker/151.webp"
+ },
+ {
+  "id": "187",
+  "name": "霸天虎过山车",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "变形金刚基地",
+  "lng": 116.679921,
+  "lat": 39.85766,
+  "coordValid": true,
+  "img": "data/img/187.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/batianhuguoshanche",
+  "tags": [
+   "变形金刚基地",
+   "室外"
+  ],
+  "imgLocal": "data/img/187.jpg",
+  "marker": "data/img/marker/187.webp"
+ },
+ {
+  "id": "306",
+  "name": "大黄蜂回旋机",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "变形金刚基地",
+  "lng": 116.680904,
+  "lat": 39.858017,
+  "coordValid": true,
+  "img": "data/img/306.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/dahuangfenghuixuanji",
+  "tags": [
+   "变形金刚基地",
+   "室外"
+  ],
+  "imgLocal": "data/img/306.jpg",
+  "marker": "data/img/marker/306.webp"
+ },
+ {
+  "id": "310",
+  "name": "灯影传奇",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.684436,
+  "lat": 39.858402,
+  "coordValid": true,
+  "img": "data/img/310.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/dengyingchuanqi",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/310.jpg",
+  "marker": "data/img/marker/310.webp"
+ },
+ {
+  "id": "309",
+  "name": "炫转武侠",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683899,
+  "lat": 39.858639,
+  "coordValid": true,
+  "img": "data/img/309.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/xuanzhuanwuxia",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/309.jpg",
+  "marker": "data/img/marker/309.webp"
+ },
+ {
+  "id": "170",
+  "name": "奇遇迅猛龙",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.68381,
+  "lat": 39.856206,
+  "coordValid": true,
+  "img": "data/img/170.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/qiyuxunmenglong",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室内"
+  ],
+  "imgLocal": "data/img/170.jpg",
+  "marker": "data/img/marker/170.webp"
+ },
+ {
+  "id": "226",
+  "name": "侏罗纪世界大冒险",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.683048,
+  "lat": 39.856562,
+  "coordValid": true,
+  "img": "data/img/226.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/zhuluojishijiedamaoxian",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室内"
+  ],
+  "imgLocal": "data/img/226.jpg",
+  "marker": "data/img/marker/226.webp"
+ },
+ {
+  "id": "167",
+  "name": "萌转过山车",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "小黄人乐园",
+  "lng": 116.684208,
+  "lat": 39.854249,
+  "coordValid": true,
+  "img": "data/img/167.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/mengzhuanguoshanche",
+  "tags": [
+   "小黄人乐园",
+   "室内"
+  ],
+  "imgLocal": "data/img/167.jpg",
+  "marker": "data/img/marker/167.webp"
+ },
+ {
+  "id": "168",
+  "name": "超萌漩漩涡",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "小黄人乐园",
+  "lng": 116.683965,
+  "lat": 39.854908,
+  "coordValid": true,
+  "img": "data/img/168.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/chaomengxuanxuanwo",
+  "tags": [
+   "小黄人乐园",
+   "室内"
+  ],
+  "imgLocal": "data/img/168.jpg",
+  "marker": "data/img/marker/168.webp"
+ },
+ {
+  "id": "122",
+  "name": "哈利·波特与禁忌之旅™",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686896,
+  "lat": 39.856904,
+  "coordValid": true,
+  "img": "data/img/122.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/haliboteyujinjizhilutm",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室内"
+  ],
+  "imgLocal": "data/img/122.jpg",
+  "marker": "data/img/marker/122.webp"
+ },
+ {
+  "id": "169",
+  "name": "飞越侏罗纪",
+  "cat": "play",
+  "catLabel": "玩乐",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.682153,
+  "lat": 39.856325,
+  "coordValid": true,
+  "img": "data/img/169.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/play/feiyuezhuluojigaixiangmuzanweikaifang",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室外"
+  ],
+  "imgLocal": "data/img/169.jpg",
+  "marker": "data/img/marker/169.webp"
+ },
+ {
+  "id": "176",
+  "name": "梅尔斯餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.682025,
+  "lat": 39.854697,
+  "coordValid": true,
+  "img": "data/img/176.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/meiersicanting",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/176.jpg",
+  "marker": "data/img/marker/176.webp"
+ },
+ {
+  "id": "315",
+  "name": "落霞餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.680993,
+  "lat": 39.856146,
+  "coordValid": true,
+  "img": "data/img/315.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/luoxiacanting",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/315.jpg",
+  "marker": "data/img/marker/315.webp"
+ },
+ {
+  "id": "305",
+  "name": "哈蒙德餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.683299,
+  "lat": 39.855813,
+  "coordValid": true,
+  "img": "data/img/305.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/hamengdecanting",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/305.jpg",
+  "marker": "data/img/marker/305.webp"
+ },
+ {
+  "id": "508",
+  "name": "皮爷咖啡",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.6809738,
+  "lat": 39.8549256,
+  "coordValid": true,
+  "img": "data/img/508.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/piyekafei-2",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/508.jpg",
+  "marker": "data/img/marker/508.webp"
+ },
+ {
+  "id": "222",
+  "name": "城市大道酷萌烧肉寿司",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.676917,
+  "lat": 39.850495,
+  "coordValid": true,
+  "img": "data/img/222.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/mengmengniuyushousihanbaocanba",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/222.jpg",
+  "marker": "data/img/marker/222.webp"
+ },
+ {
+  "id": "304",
+  "name": "至景餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.684282,
+  "lat": 39.856065,
+  "coordValid": true,
+  "img": "data/img/304.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/zhijingcanting",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/304.jpg",
+  "marker": "data/img/marker/304.webp"
+ },
+ {
+  "id": "179",
+  "name": "老巢餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.683446,
+  "lat": 39.854074,
+  "coordValid": true,
+  "img": "data/img/179.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/laochaocanting",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/179.jpg",
+  "marker": "data/img/marker/179.webp"
+ },
+ {
+  "id": "123",
+  "name": "三把扫帚™",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.685791,
+  "lat": 39.856015,
+  "coordValid": true,
+  "img": "data/img/123.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/sanbasaozhoutm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/123.jpg",
+  "marker": "data/img/marker/123.webp"
+ },
+ {
+  "id": "308",
+  "name": "背离的秘密餐吧",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "变形金刚基地",
+  "lng": 116.681702,
+  "lat": 39.857895,
+  "coordValid": true,
+  "img": "data/img/308.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/beilidemimicanba",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/308.jpg",
+  "marker": "data/img/marker/308.webp"
+ },
+ {
+  "id": "191",
+  "name": "能量晶体补充站",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "变形金刚基地",
+  "lng": 116.680301,
+  "lat": 39.857983,
+  "coordValid": true,
+  "img": "data/img/191.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/nengliangjingtibuchongzhan",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/191.jpg",
+  "marker": "data/img/marker/191.webp"
+ },
+ {
+  "id": "371",
+  "name": "比弗利山庄法式烘焙坊",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.681013,
+  "lat": 39.85551,
+  "coordValid": true,
+  "img": "data/img/371.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/bifulishanzhuangfashihongbeifang",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/371.jpg",
+  "marker": "data/img/marker/371.webp"
+ },
+ {
+  "id": "303",
+  "name": "琥珀岭餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.682234,
+  "lat": 39.857289,
+  "coordValid": true,
+  "img": "data/img/303.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/hupolingcanting",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/303.jpg",
+  "marker": "data/img/marker/303.webp"
+ },
+ {
+  "id": "302",
+  "name": "飞行猎手餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.682546,
+  "lat": 39.856669,
+  "coordValid": true,
+  "img": "data/img/302.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/feixinglieshoucanting",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/302.jpg",
+  "marker": "data/img/marker/302.webp"
+ },
+ {
+  "id": "307",
+  "name": "赛博坦骑士餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "变形金刚基地",
+  "lng": 116.681442,
+  "lat": 39.858199,
+  "coordValid": true,
+  "img": "data/img/307.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/saibotanqishicanting",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/307.jpg",
+  "marker": "data/img/marker/307.webp"
+ },
+ {
+  "id": "178",
+  "name": "美食广场",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.684528,
+  "lat": 39.854918,
+  "coordValid": true,
+  "img": "data/img/178.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/meishiguangchang",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/178.jpg",
+  "marker": "data/img/marker/178.webp"
+ },
+ {
+  "id": "312",
+  "name": "熊猫婆婆私房菜",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.684661,
+  "lat": 39.858564,
+  "coordValid": true,
+  "img": "data/img/312.png",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/xiongmaopoposifangcai",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/312.png",
+  "marker": "data/img/marker/312.webp"
+ },
+ {
+  "id": "134",
+  "name": "平先生面馆",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683184,
+  "lat": 39.858289,
+  "coordValid": true,
+  "img": "data/img/134.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/pingxianshengmianguan",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/134.jpg",
+  "marker": "data/img/marker/134.webp"
+ },
+ {
+  "id": "301",
+  "name": "漂流者小馆",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "未来水世界",
+  "lng": 116.684896,
+  "lat": 39.857518,
+  "coordValid": true,
+  "img": "data/img/301.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/piaoliuzhexiaoguan",
+  "tags": [
+   "未来水世界"
+  ],
+  "imgLocal": "data/img/301.jpg",
+  "marker": "data/img/marker/301.webp"
+ },
+ {
+  "id": "161",
+  "name": "猪头酒吧",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.685906,
+  "lat": 39.856082,
+  "coordValid": true,
+  "img": "data/img/161.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/zhutoujiuba",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/161.jpg",
+  "marker": "data/img/marker/161.webp"
+ },
+ {
+  "id": "313",
+  "name": "功夫小吃",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.684213,
+  "lat": 39.858378,
+  "coordValid": true,
+  "img": "data/img/313.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/gongfuxiaochi",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/313.jpg",
+  "marker": "data/img/marker/313.webp"
+ },
+ {
+  "id": "223",
+  "name": "城市大道五杯美食精酿",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.676147,
+  "lat": 39.851964,
+  "coordValid": true,
+  "img": "data/img/223.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/chengshidadaowubeimeishijingniang",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/223.jpg",
+  "marker": "data/img/marker/223.webp"
+ },
+ {
+  "id": "142",
+  "name": "酷巧-巧克力商店和美味盛宴厨房",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.67761,
+  "lat": 39.851889,
+  "coordValid": true,
+  "img": "data/img/142.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/kuqiao-qiaokelishangdianhemeiweishengyanchufang",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/142.jpg",
+  "marker": "data/img/marker/142.webp"
+ },
+ {
+  "id": "434",
+  "name": "11号围场小吃",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.6827172,
+  "lat": 39.8570382,
+  "coordValid": true,
+  "img": "data/img/434.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/11haoweichangxiaochi",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/434.jpg",
+  "marker": "data/img/marker/434.webp"
+ },
+ {
+  "id": "438",
+  "name": "龙辇",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.6835916,
+  "lat": 39.8586895,
+  "coordValid": true,
+  "img": "data/img/438.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/longnian",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/438.jpg",
+  "marker": "data/img/marker/438.webp"
+ },
+ {
+  "id": "437",
+  "name": "能量晶体冰乐",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "变形金刚基地",
+  "lng": 116.680973,
+  "lat": 39.858218,
+  "coordValid": true,
+  "img": "data/img/437.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/nengliangjingtibingle",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/437.jpg",
+  "marker": "data/img/marker/437.webp"
+ },
+ {
+  "id": "431",
+  "name": "爆米花",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.6805232,
+  "lat": 39.856194,
+  "coordValid": true,
+  "img": "data/img/431.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/baomihua",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/431.jpg",
+  "marker": "data/img/marker/431.webp"
+ },
+ {
+  "id": "224",
+  "name": "霓虹街市—东南亚美食",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.677381,
+  "lat": 39.850492,
+  "coordValid": true,
+  "img": "data/img/224.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/nihongjieshi-dongnanyameishi",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/224.jpg",
+  "marker": "data/img/marker/224.webp"
+ },
+ {
+  "id": "143",
+  "name": "城市大道红炉披萨烘焙坊",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.67678,
+  "lat": 39.850901,
+  "coordValid": true,
+  "img": "data/img/143.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/chengshidadaohonglupisahongbeifang",
+  "tags": [],
+  "imgLocal": "data/img/143.jpg",
+  "marker": "data/img/marker/143.webp"
+ },
+ {
+  "id": "319",
+  "name": "萌乐快餐",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.684156,
+  "lat": 39.854525,
+  "coordValid": true,
+  "img": "data/img/319.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/menglekuaican",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/319.jpg",
+  "marker": "data/img/marker/319.webp"
+ },
+ {
+  "id": "448",
+  "name": "黄油啤酒™",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686457,
+  "lat": 39.856249,
+  "coordValid": true,
+  "img": "data/img/448.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/huangyoupijiu-0",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/448.jpg",
+  "marker": "data/img/marker/448.webp"
+ },
+ {
+  "id": "439",
+  "name": "黄油啤酒™",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.685938,
+  "lat": 39.856064,
+  "coordValid": true,
+  "img": "data/img/439.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/huangyoupijiu",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/439.jpg",
+  "marker": "data/img/marker/439.webp"
+ },
+ {
+  "id": "254",
+  "name": "莲花园",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "环球影城大酒店",
+  "lng": 116.679404,
+  "lat": 39.854451,
+  "coordValid": true,
+  "img": "data/img/254.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/lianhuayuan",
+  "tags": [],
+  "imgLocal": "data/img/254.jpg",
+  "marker": "data/img/marker/254.webp"
+ },
+ {
+  "id": "329",
+  "name": "熙悦餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "诺金度假酒店",
+  "lng": 116.682046,
+  "lat": 39.851614,
+  "coordValid": true,
+  "img": "data/img/329.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/xiyuecanting",
+  "tags": [],
+  "imgLocal": "data/img/329.jpg",
+  "marker": "data/img/marker/329.webp"
+ },
+ {
+  "id": "330",
+  "name": "禾家中餐厅",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "诺金度假酒店",
+  "lng": 116.68205,
+  "lat": 39.850524,
+  "coordValid": true,
+  "img": "data/img/330.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/hejiazhongcanting",
+  "tags": [],
+  "imgLocal": "data/img/330.jpg",
+  "marker": "data/img/marker/330.webp"
+ },
+ {
+  "id": "318",
+  "name": "小黄人来一口",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.684364,
+  "lat": 39.854347,
+  "coordValid": true,
+  "img": "data/img/318.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/xiaohuangrenlaiyikou",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/318.jpg",
+  "marker": "data/img/marker/318.webp"
+ },
+ {
+  "id": "433",
+  "name": "努布拉冰沙",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.6822934,
+  "lat": 39.8570505,
+  "coordValid": true,
+  "img": "data/img/433.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/nubulabingsha",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/433.jpg",
+  "marker": "data/img/marker/433.webp"
+ },
+ {
+  "id": "435",
+  "name": "侏罗纪世界玉米热狗",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.6831678,
+  "lat": 39.8563299,
+  "coordValid": true,
+  "img": "data/img/435.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/zhuluojishijieyumiregou",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/435.jpg",
+  "marker": "data/img/marker/435.webp"
+ },
+ {
+  "id": "436",
+  "name": "大黄蜂嘭嘭",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "变形金刚基地",
+  "lng": 116.6805661,
+  "lat": 39.85808,
+  "coordValid": true,
+  "img": "data/img/436.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/dahuangfengpengpeng",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/436.jpg",
+  "marker": "data/img/marker/436.webp"
+ },
+ {
+  "id": "440",
+  "name": "高地美食屋",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "未来水世界",
+  "lng": 116.685573,
+  "lat": 39.857223,
+  "coordValid": true,
+  "img": "data/img/440.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/gaodemeishiwu",
+  "tags": [
+   "未来水世界"
+  ],
+  "imgLocal": "data/img/440.jpg",
+  "marker": "data/img/marker/440.webp"
+ },
+ {
+  "id": "445",
+  "name": "可口可乐塔",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "好莱坞",
+  "lng": 116.680552,
+  "lat": 39.856813,
+  "coordValid": true,
+  "img": "data/img/445.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/kekoukeleta",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/445.jpg",
+  "marker": "data/img/marker/445.webp"
+ },
+ {
+  "id": "446",
+  "name": "冰冻射线冰淇淋",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.6839564,
+  "lat": 39.855321,
+  "coordValid": true,
+  "img": "data/img/446.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/bingdongshexianbingqilin",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/446.jpg",
+  "marker": "data/img/marker/446.webp"
+ },
+ {
+  "id": "449",
+  "name": "盐老板",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "未来水世界",
+  "lng": 116.6850185,
+  "lat": 39.8576271,
+  "coordValid": true,
+  "img": "data/img/449.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/yanlaoban",
+  "tags": [
+   "未来水世界"
+  ],
+  "imgLocal": "data/img/449.jpg",
+  "marker": "data/img/marker/449.webp"
+ },
+ {
+  "id": "432",
+  "name": "蕉蕉爆米花",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "小黄人乐园",
+  "lng": 116.6847718,
+  "lat": 39.854728,
+  "coordValid": true,
+  "img": "data/img/432.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/jiaojiaobaomihua",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/432.jpg",
+  "marker": "data/img/marker/432.webp"
+ },
+ {
+  "id": "233",
+  "name": "蒙牛冰淇淋&amp;牛奶工坊",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.676924,
+  "lat": 39.850617,
+  "coordValid": true,
+  "img": "data/img/233.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/mengniubingqilinniunaigongfang",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/233.jpg",
+  "marker": "data/img/marker/233.webp"
+ },
+ {
+  "id": "234",
+  "name": "皮爷咖啡",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.677364,
+  "lat": 39.850989,
+  "coordValid": true,
+  "img": "data/img/234.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/piyekafei-0",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/234.jpg",
+  "marker": "data/img/marker/234.webp"
+ },
+ {
+  "id": "230",
+  "name": "红龙酒廊",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "环球影城大酒店",
+  "lng": 116.679157,
+  "lat": 39.854294,
+  "coordValid": true,
+  "img": "data/img/230.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/honglongjiulang",
+  "tags": [],
+  "imgLocal": "data/img/230.jpg",
+  "marker": "data/img/marker/230.webp"
+ },
+ {
+  "id": "328",
+  "name": "大堂吧",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "诺金度假酒店",
+  "lng": 116.681764,
+  "lat": 39.85107,
+  "coordValid": true,
+  "img": "data/img/328.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/datangba",
+  "tags": [],
+  "imgLocal": "data/img/328.jpg",
+  "marker": "data/img/marker/328.webp"
+ },
+ {
+  "id": "343",
+  "name": "东来顺（北京环球城市大道店）",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.676267,
+  "lat": 39.851782,
+  "coordValid": true,
+  "img": "data/img/343.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/donglaishunbeijinghuanqiuchengshidadaodian",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/343.jpg",
+  "marker": "data/img/marker/343.webp"
+ },
+ {
+  "id": "342",
+  "name": "穿越·外婆家旗舰店",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.677154,
+  "lat": 39.851586,
+  "coordValid": true,
+  "img": "data/img/342.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/chuanyuewaipojiaqijiandian",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/342.jpg",
+  "marker": "data/img/marker/342.webp"
+ },
+ {
+  "id": "334",
+  "name": "全聚德(北京环球城市大道店)",
+  "cat": "restaurant",
+  "catLabel": "餐饮",
+  "land": "北京环球城市大道",
+  "lng": 116.677233,
+  "lat": 39.851251,
+  "coordValid": true,
+  "img": "data/img/334.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/restaurant/quanjudebeijinghuanqiuchengshidadaodian",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/334.jpg",
+  "marker": "data/img/marker/334.webp"
+ },
+ {
+  "id": "135",
+  "name": "霍格沃茨™城堡夜间魔法庆典",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.687625,
+  "lat": 39.857206,
+  "coordValid": true,
+  "img": "data/img/135.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huogewocitmchengbaoyejiandengguangqingdian",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室外"
+  ],
+  "imgLocal": "data/img/135.jpg",
+  "marker": "data/img/marker/135.webp"
+ },
+ {
+  "id": "597",
+  "name": "怪物小黄人见面会 B",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "小黄人乐园",
+  "lng": 116.68296,
+  "lat": 39.85463,
+  "coordValid": true,
+  "img": "data/img/597.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/guaiwuxiaohuangrenjianmianhui",
+  "tags": [
+   "小黄人乐园",
+   "室外"
+  ],
+  "imgLocal": "data/img/597.jpg",
+  "marker": "data/img/marker/597.webp"
+ },
+ {
+  "id": "846",
+  "name": "怪物小黄人见面会 A",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "小黄人乐园",
+  "lng": 116.684135,
+  "lat": 39.854465,
+  "coordValid": true,
+  "img": "data/img/846.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/guaiwuxiaohuangrenjianmianhui-0",
+  "tags": [
+   "小黄人乐园",
+   "室外"
+  ],
+  "imgLocal": "data/img/846.jpg",
+  "marker": "data/img/marker/846.webp"
+ },
+ {
+  "id": "171",
+  "name": "霍格沃茨™特快列车长",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.6858,
+  "lat": 39.85567,
+  "coordValid": true,
+  "img": "data/img/171.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huogewocitmtekuailiechezhang",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室外"
+  ],
+  "imgLocal": "data/img/171.jpg",
+  "marker": "data/img/marker/171.webp"
+ },
+ {
+  "id": "154",
+  "name": "未来水世界特技表演",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "未来水世界",
+  "lng": 116.685516,
+  "lat": 39.858831,
+  "coordValid": true,
+  "img": "data/img/154.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/weilaishuishijietejibiaoyan",
+  "tags": [
+   "未来水世界",
+   "室外"
+  ],
+  "imgLocal": "data/img/154.jpg",
+  "marker": "data/img/marker/154.webp"
+ },
+ {
+  "id": "826",
+  "name": "《小黄人与大怪兽》詹姆斯和亨利角色见面会",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.6822,
+  "lat": 39.85499,
+  "coordValid": true,
+  "img": "data/img/826.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/xiaohuangrenyudaguaishouzhanmusihehenglijiaosejianmianhui",
+  "tags": [
+   "好莱坞",
+   "室外"
+  ],
+  "imgLocal": "data/img/826.jpg",
+  "marker": "data/img/marker/826.webp"
+ },
+ {
+  "id": "172",
+  "name": "灯光，摄像，开拍！",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.681545,
+  "lat": 39.85492,
+  "coordValid": true,
+  "img": "data/img/172.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/dengguangshexiangkaipai",
+  "tags": [
+   "好莱坞",
+   "室内"
+  ],
+  "imgLocal": "data/img/172.jpg",
+  "marker": "data/img/marker/172.webp"
+ },
+ {
+  "id": "507",
+  "name": "环球流行乐",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.68232,
+  "lat": 39.854935,
+  "coordValid": true,
+  "img": "data/img/507.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huanqiuliuxingle",
+  "tags": [
+   "好莱坞",
+   "室外"
+  ],
+  "imgLocal": "data/img/507.jpg",
+  "marker": "data/img/marker/507.webp"
+ },
+ {
+  "id": "377",
+  "name": "不可驯服",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.680171,
+  "lat": 39.855686,
+  "coordValid": true,
+  "img": "data/img/377.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/bukexunfu",
+  "tags": [
+   "好莱坞",
+   "室内"
+  ],
+  "imgLocal": "data/img/377.jpg",
+  "marker": "data/img/marker/377.webp"
+ },
+ {
+  "id": "175",
+  "name": "欢乐好声音巡演",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "小黄人乐园",
+  "lng": 116.684813,
+  "lat": 39.854786,
+  "coordValid": true,
+  "img": "data/img/175.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huanlehaoshengyinxunyan",
+  "tags": [
+   "小黄人乐园",
+   "室内"
+  ],
+  "imgLocal": "data/img/175.jpg",
+  "marker": "data/img/marker/175.webp"
+ },
+ {
+  "id": "174",
+  "name": "小黄人见面会",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "小黄人乐园",
+  "lng": 116.684135,
+  "lat": 39.8548,
+  "coordValid": true,
+  "img": "data/img/174.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/xiaohuangrenjianmianhui",
+  "tags": [
+   "小黄人乐园",
+   "室内"
+  ],
+  "imgLocal": "data/img/174.jpg",
+  "marker": "data/img/marker/174.webp"
+ },
+ {
+  "id": "397",
+  "name": "好莱坞见面会",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.680717,
+  "lat": 39.854792,
+  "coordValid": true,
+  "img": "data/img/397.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/haolaiwujianmianhui",
+  "tags": [
+   "好莱坞",
+   "室外"
+  ],
+  "imgLocal": "data/img/397.jpg",
+  "marker": "data/img/marker/397.webp"
+ },
+ {
+  "id": "125",
+  "name": "青蛙合唱团™",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686721,
+  "lat": 39.856137,
+  "coordValid": true,
+  "img": "data/img/125.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/qingwahechangtuan",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室外"
+  ],
+  "imgLocal": "data/img/125.jpg",
+  "marker": "data/img/marker/125.webp"
+ },
+ {
+  "id": "753",
+  "name": "《侏罗纪世界：重生》鹰角龙小洛见面会",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": null,
+  "lat": null,
+  "coordValid": false,
+  "img": "data/img/753.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/node/753",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室外"
+  ],
+  "imgLocal": "data/img/753.jpg",
+  "marker": "data/img/marker/753.webp"
+ },
+ {
+  "id": "739",
+  "name": "小黄人冰淇淋苏打秀",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "小黄人乐园",
+  "lng": 116.68296,
+  "lat": 39.85463,
+  "coordValid": true,
+  "img": "data/img/739.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/xiaohuangrenbingqilinsudaxiu",
+  "tags": [
+   "小黄人乐园",
+   "室外"
+  ],
+  "imgLocal": "data/img/739.jpg",
+  "marker": "data/img/marker/739.webp"
+ },
+ {
+  "id": "660",
+  "name": "环球中场秀",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "好莱坞",
+  "lng": 116.68067,
+  "lat": 39.856839,
+  "coordValid": true,
+  "img": "data/img/660.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huanqiuzhongchangxiu",
+  "tags": [
+   "好莱坞",
+   "室外"
+  ],
+  "imgLocal": "data/img/660.jpg",
+  "marker": "data/img/marker/660.webp"
+ },
+ {
+  "id": "400",
+  "name": "功夫熊猫见面会",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683578,
+  "lat": 39.858691,
+  "coordValid": true,
+  "img": "data/img/400.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/gongfuxiongmaojianmianhui",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/400.jpg",
+  "marker": "data/img/marker/400.webp"
+ },
+ {
+  "id": "173",
+  "name": "智慧仙桃树",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.683729,
+  "lat": 39.858825,
+  "coordValid": true,
+  "img": "data/img/173.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/zhihuixiantaoshu",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/173.jpg",
+  "marker": "data/img/marker/173.webp"
+ },
+ {
+  "id": "190",
+  "name": "变形金刚：传奇现场",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "变形金刚基地",
+  "lng": 116.681373,
+  "lat": 39.857548,
+  "coordValid": true,
+  "img": "data/img/190.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/bianxingjingangchuanqixianchang",
+  "tags": [
+   "变形金刚基地",
+   "室外"
+  ],
+  "imgLocal": "data/img/190.jpg",
+  "marker": "data/img/marker/190.webp"
+ },
+ {
+  "id": "160",
+  "name": "奥利凡德™",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686255,
+  "lat": 39.856206,
+  "coordValid": true,
+  "img": "data/img/160.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/aolifandetm",
+  "tags": [
+   "哈利·波特的魔法世界™",
+   "室内"
+  ],
+  "imgLocal": "data/img/160.jpg",
+  "marker": "data/img/marker/160.webp"
+ },
+ {
+  "id": "146",
+  "name": "环球城市大道电影院",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "北京环球城市大道",
+  "lng": 116.676813,
+  "lat": 39.850734,
+  "coordValid": true,
+  "img": "data/img/146.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/huanqiuchengshidadaodianyingyuan",
+  "tags": [
+   "北京环球城市大道",
+   "室内"
+  ],
+  "imgLocal": "data/img/146.jpg",
+  "marker": "data/img/marker/146.webp"
+ },
+ {
+  "id": "401",
+  "name": "阿宝欢乐现场",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.68459,
+  "lat": 39.858349,
+  "coordValid": true,
+  "img": "data/img/401.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/abaohuanlexianchang",
+  "tags": [
+   "功夫熊猫盖世之地",
+   "室内"
+  ],
+  "imgLocal": "data/img/401.jpg",
+  "marker": "data/img/marker/401.webp"
+ },
+ {
+  "id": "402",
+  "name": "迅猛龙宝宝",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.6829694,
+  "lat": 39.8562105,
+  "coordValid": true,
+  "img": "data/img/402.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/xunmenglongbaobao",
+  "tags": [
+   "侏罗纪世界努布拉岛",
+   "室外"
+  ],
+  "imgLocal": "data/img/402.jpg",
+  "marker": "data/img/marker/402.webp"
+ },
+ {
+  "id": "322",
+  "name": "三强争霸赛动员会™",
+  "cat": "show",
+  "catLabel": "演出",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686692,
+  "lat": 39.856121,
+  "coordValid": true,
+  "img": "data/img/322.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/show/sanqiangzhengbasaidongyuanhui",
+  "tags": [],
+  "imgLocal": "data/img/322.jpg",
+  "marker": "data/img/marker/322.webp"
+ },
+ {
+  "id": "552",
+  "name": "&quot;你好, 小黄人&quot;商店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "北京环球城市大道",
+  "lng": 116.677187,
+  "lat": 39.851391,
+  "coordValid": true,
+  "img": "data/img/552.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/xiaohuangrenkuaishandian",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/552.jpg",
+  "marker": "data/img/marker/552.webp"
+ },
+ {
+  "id": "164",
+  "name": "德维与班吉巫师™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686082,
+  "lat": 39.855988,
+  "coordValid": true,
+  "img": "data/img/164.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/deweiyubanjiwushitm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/164.jpg",
+  "marker": "data/img/marker/164.webp"
+ },
+ {
+  "id": "737",
+  "name": "动画工坊周边商店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "好莱坞",
+  "lng": 116.68103,
+  "lat": 39.85539,
+  "coordValid": true,
+  "img": "data/img/737.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/donghuagongfangzhoubianshangdian",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/737.jpg",
+  "marker": "data/img/marker/737.webp"
+ },
+ {
+  "id": "225",
+  "name": "环球影城商店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "北京环球城市大道",
+  "lng": 116.676724,
+  "lat": 39.851609,
+  "coordValid": true,
+  "img": "data/img/225.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/huanqiuyingchengshangdian-0",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/225.jpg",
+  "marker": "data/img/marker/225.webp"
+ },
+ {
+  "id": "367",
+  "name": "甜甜屋",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "小黄人乐园",
+  "lng": 116.683201,
+  "lat": 39.854534,
+  "coordValid": true,
+  "img": "data/img/367.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/tiantianwu",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/367.jpg",
+  "marker": "data/img/marker/367.webp"
+ },
+ {
+  "id": "181",
+  "name": "暗房",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "好莱坞",
+  "lng": 116.680606,
+  "lat": 39.85454,
+  "coordValid": true,
+  "img": "data/img/181.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/anfang",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/181.jpg",
+  "marker": "data/img/marker/181.webp"
+ },
+ {
+  "id": "166",
+  "name": "猫头鹰邮递™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686159,
+  "lat": 39.856092,
+  "coordValid": true,
+  "img": "data/img/166.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/maotouyingyouditm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/166.jpg",
+  "marker": "data/img/marker/166.webp"
+ },
+ {
+  "id": "165",
+  "name": "霍格莫德™车站",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.685863,
+  "lat": 39.855706,
+  "coordValid": true,
+  "img": "data/img/165.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/huogemodetmchezhan",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/165.jpg",
+  "marker": "data/img/marker/165.webp"
+ },
+ {
+  "id": "126",
+  "name": "费尔奇没收品商店™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.687337,
+  "lat": 39.856757,
+  "coordValid": true,
+  "img": "data/img/126.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/feierqimeishoupinshangdiantm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/126.jpg",
+  "marker": "data/img/marker/126.webp"
+ },
+ {
+  "id": "163",
+  "name": "风雅牌巫师服装店™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.686379,
+  "lat": 39.856175,
+  "coordValid": true,
+  "img": "data/img/163.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/fengyapaiwushifuzhuangdiantm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/163.jpg",
+  "marker": "data/img/marker/163.webp"
+ },
+ {
+  "id": "180",
+  "name": "蜂蜜公爵™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.685683,
+  "lat": 39.855774,
+  "coordValid": true,
+  "img": "data/img/180.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/fengmigongjuetm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/180.jpg",
+  "marker": "data/img/marker/180.webp"
+ },
+ {
+  "id": "124",
+  "name": "奥利凡德™",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.68633,
+  "lat": 39.856286,
+  "coordValid": true,
+  "img": "data/img/124.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/aolifandetm",
+  "tags": [
+   "哈利·波特的魔法世界™"
+  ],
+  "imgLocal": "data/img/124.jpg",
+  "marker": "data/img/marker/124.webp"
+ },
+ {
+  "id": "182",
+  "name": "环球影城商店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "好莱坞",
+  "lng": 116.680816,
+  "lat": 39.854676,
+  "coordValid": true,
+  "img": "data/img/182.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/huanqiuyingchengshangdian",
+  "tags": [
+   "好莱坞"
+  ],
+  "imgLocal": "data/img/182.jpg",
+  "marker": "data/img/marker/182.webp"
+ },
+ {
+  "id": "186",
+  "name": "侏罗纪集市",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "侏罗纪世界努布拉岛",
+  "lng": 116.683409,
+  "lat": 39.856599,
+  "coordValid": true,
+  "img": "data/img/186.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/zhuluojijishi",
+  "tags": [
+   "侏罗纪世界努布拉岛"
+  ],
+  "imgLocal": "data/img/186.jpg",
+  "marker": "data/img/marker/186.webp"
+ },
+ {
+  "id": "162",
+  "name": "小黄人集市",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "小黄人乐园",
+  "lng": 116.683775,
+  "lat": 39.853899,
+  "coordValid": true,
+  "img": "data/img/162.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/xiaohuangrenjishi",
+  "tags": [
+   "小黄人乐园"
+  ],
+  "imgLocal": "data/img/162.jpg",
+  "marker": "data/img/marker/162.webp"
+ },
+ {
+  "id": "192",
+  "name": "探长零件集市",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "变形金刚基地",
+  "lng": 116.681244,
+  "lat": 39.857497,
+  "coordValid": true,
+  "img": "data/img/192.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/tanzhanglingjianjishi",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/192.jpg",
+  "marker": "data/img/marker/192.webp"
+ },
+ {
+  "id": "193",
+  "name": "特工装备店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "变形金刚基地",
+  "lng": 116.680599,
+  "lat": 39.858281,
+  "coordValid": true,
+  "img": "data/img/193.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/tegongzhuangbeidian",
+  "tags": [
+   "变形金刚基地"
+  ],
+  "imgLocal": "data/img/193.jpg",
+  "marker": "data/img/marker/193.webp"
+ },
+ {
+  "id": "185",
+  "name": "平先生神龙大侠大百货",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.6832,
+  "lat": 39.858802,
+  "coordValid": true,
+  "img": "data/img/185.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/pingxianshengshenlongdaxiadabaihuo",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/185.jpg",
+  "marker": "data/img/marker/185.webp"
+ },
+ {
+  "id": "348",
+  "name": "中国工商银行",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "北京环球城市大道",
+  "lng": 116.677332,
+  "lat": 39.849988,
+  "coordValid": true,
+  "img": "data/img/348.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/zhongguogongshangyinxing",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/348.jpg",
+  "marker": "data/img/marker/348.webp"
+ },
+ {
+  "id": "344",
+  "name": "泡泡玛特全球概念店",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "北京环球城市大道",
+  "lng": 116.67736,
+  "lat": 39.850058,
+  "coordValid": true,
+  "img": "data/img/344.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/paopaomatequanqiugainiandian",
+  "tags": [
+   "北京环球城市大道"
+  ],
+  "imgLocal": "data/img/344.jpg",
+  "marker": "data/img/marker/344.webp"
+ },
+ {
+  "id": "314",
+  "name": "熊猫杂货铺",
+  "cat": "store",
+  "catLabel": "商店",
+  "land": "功夫熊猫盖世之地",
+  "lng": 116.684198,
+  "lat": 39.858585,
+  "coordValid": true,
+  "img": "data/img/314.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/store/xiongmaozahuopu",
+  "tags": [
+   "功夫熊猫盖世之地"
+  ],
+  "imgLocal": "data/img/314.jpg",
+  "marker": "data/img/marker/314.webp"
+ },
+ {
+  "id": "130",
+  "name": "诺金度假酒店",
+  "cat": "hotel",
+  "catLabel": "酒店",
+  "land": "",
+  "lng": 116.681725,
+  "lat": 39.852002,
+  "coordValid": true,
+  "img": "data/img/130.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/hotels/nuo-resort",
+  "tags": [
+   "五星级"
+  ],
+  "imgLocal": "data/img/130.jpg",
+  "marker": "data/img/marker/130.webp"
+ },
+ {
+  "id": "127",
+  "name": "环球影城大酒店",
+  "cat": "hotel",
+  "catLabel": "酒店",
+  "land": "",
+  "lng": 116.679319,
+  "lat": 39.853825,
+  "coordValid": true,
+  "img": "data/img/127.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/hotels/universal-studios-grand",
+  "tags": [
+   "四星级"
+  ],
+  "imgLocal": "data/img/127.jpg",
+  "marker": "data/img/marker/127.webp"
+ },
+ {
+  "id": "740",
+  "name": "北京环球城市大道音乐节",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "",
+  "lng": 116.67786,
+  "lat": 39.85085,
+  "coordValid": true,
+  "img": "data/img/740.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/beijinghuanqiuchengshidadaoyinlejie",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/740.jpg",
+  "marker": "data/img/marker/740.webp"
+ },
+ {
+  "id": "767",
+  "name": "画皮幽宅",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "小黄人乐园",
+  "lng": 116.684685,
+  "lat": 39.855392,
+  "coordValid": true,
+  "img": "data/img/767.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/huapiyouzhai",
+  "tags": [
+   "室内"
+  ],
+  "imgLocal": "data/img/767.jpg",
+  "marker": "data/img/marker/767.webp"
+ },
+ {
+  "id": "840",
+  "name": "第五人格-逃离白沙街",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "变形金刚基地",
+  "lng": 116.68218,
+  "lat": 39.85796,
+  "coordValid": true,
+  "img": "data/img/840.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/diwurenge-taolibaishajie",
+  "tags": [
+   "室内"
+  ],
+  "imgLocal": "data/img/840.jpg",
+  "marker": "data/img/marker/840.webp"
+ },
+ {
+  "id": "843",
+  "name": "惊叫区：梅尔斯禁地",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.68232,
+  "lat": 39.854935,
+  "coordValid": true,
+  "img": "data/img/843.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/jingjiaoqumeiersijinde",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/843.jpg",
+  "marker": "data/img/marker/843.webp"
+ },
+ {
+  "id": "848",
+  "name": "盗墓笔记",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "小黄人乐园",
+  "lng": 116.68484,
+  "lat": 39.85407,
+  "coordValid": true,
+  "img": "data/img/848.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/daomubiji",
+  "tags": [
+   "室内"
+  ],
+  "imgLocal": "data/img/848.jpg",
+  "marker": "data/img/marker/848.webp"
+ },
+ {
+  "id": "839",
+  "name": "静默之地",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "小黄人乐园",
+  "lng": 116.68476,
+  "lat": 39.854023,
+  "coordValid": true,
+  "img": "data/img/839.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/jingmozhide",
+  "tags": [
+   "室内"
+  ],
+  "imgLocal": "data/img/839.jpg",
+  "marker": "data/img/marker/839.webp"
+ },
+ {
+  "id": "768",
+  "name": "环球怪物：地下秘穴",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.6823,
+  "lat": 39.85444,
+  "coordValid": true,
+  "img": "data/img/768.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/huanqiuguaiwudexiamixue",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/768.jpg",
+  "marker": "data/img/marker/768.webp"
+ },
+ {
+  "id": "847",
+  "name": "惊叫区：梅根",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.68088,
+  "lat": 39.85674,
+  "coordValid": true,
+  "img": "data/img/847.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/jingjiaoqumeigen",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/847.jpg",
+  "marker": "data/img/marker/847.webp"
+ },
+ {
+  "id": "845",
+  "name": "魔图斯见面会",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.68133,
+  "lat": 39.85524,
+  "coordValid": true,
+  "img": "data/img/845.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/motusijianmianhui",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/845.jpg",
+  "marker": "data/img/marker/845.webp"
+ },
+ {
+  "id": "844",
+  "name": "地下世界崛起",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.681175,
+  "lat": 39.8551,
+  "coordValid": true,
+  "img": "data/img/844.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/dexiashijiejueqi",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/844.jpg",
+  "marker": "data/img/marker/844.webp"
+ },
+ {
+  "id": "769",
+  "name": "食死徒™来袭",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "哈利·波特的魔法世界™",
+  "lng": 116.68656,
+  "lat": 39.85635,
+  "coordValid": true,
+  "img": "data/img/769.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/shisitutmlaixi",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/769.jpg",
+  "marker": "data/img/marker/769.webp"
+ },
+ {
+  "id": "842",
+  "name": "惊叫区：地下世界",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "好莱坞",
+  "lng": 116.68075,
+  "lat": 39.85485,
+  "coordValid": true,
+  "img": "data/img/842.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/jingjiaoqudexiashijie",
+  "tags": [
+   "室外",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/842.jpg",
+  "marker": "data/img/marker/842.webp"
+ },
+ {
+  "id": "195",
+  "name": "环球大巡游",
+  "cat": "event",
+  "catLabel": "活动",
+  "land": "",
+  "lng": 116.680503,
+  "lat": 39.854276,
+  "coordValid": true,
+  "img": "data/img/195.jpg",
+  "url": "https://www.universalbeijingresort.com/zh_CN/event/universal-on-parade",
+  "tags": [
+   "室外",
+   "巡游活动",
+   "演出活动"
+  ],
+  "imgLocal": "data/img/195.jpg",
+  "marker": "data/img/marker/195.webp"
+ }
+]

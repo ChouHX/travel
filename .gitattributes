@@ -1,0 +1,14 @@
+# 二进制资源：禁用 diff 与行尾转换，避免 git 误处理导致仓库膨胀
+*.webp binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.ico  binary
+
+# 瓦片数量多，让 git 把它们视作文本以外的数据、不参与统计推断
+tiles/** -diff -merge -text
+data/img/** -diff -merge -text
+
+# 让 GitHub 语言统计不把生成的 JS 当主体
+server/public/** linguist-generated=true
+*.min.js linguist-vendored=true

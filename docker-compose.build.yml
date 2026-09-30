@@ -1,0 +1,12 @@
+# 本地从源码构建镜像（覆盖 docker-compose.yml 里的 image）。
+#
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+#
+# 构建出的是同名镜像，因此两种方式可以互相切换、共用同一个数据卷。
+
+services:
+  ubr-map:
+    image: ubr-map:local
+    build:
+      context: .
+      dockerfile: Dockerfile

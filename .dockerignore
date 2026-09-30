@@ -1,0 +1,20 @@
+# 构建上下文里不需要的东西（保留 tiles/ 与 data/，它们要打进镜像）
+**/node_modules
+**/.git
+**/.gitignore
+
+# 运行时数据（数据库与上传的照片），绝不进镜像
+server/var
+
+# 前端构建产物：镜像里由构建阶段生成
+server/public
+
+# 开发工具与存档，运行不需要
+tools
+scripts
+app/*.tsbuildinfo
+
+# 本地开发配置
+server/.env
+*.log
+.DS_Store

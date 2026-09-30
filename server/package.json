@@ -1,0 +1,17 @@
+{
+  "name": "ubr-map-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "北京环球度假区打卡地图 · 服务端（打卡点与照片的共享存储）",
+  "scripts": {
+    "start": "node index.mjs",
+    "dev": "node --watch index.mjs"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "express": "^5.0.0"
+  }
+}

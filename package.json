@@ -1,0 +1,17 @@
+{
+  "name": "ubr-map",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "北京环球度假区打卡标注地图（前后端一体：服务端共享标注与照片）",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "setup": "npm --prefix server install && npm --prefix app install",
+    "dev": "node scripts/dev.mjs",
+    "build": "npm --prefix app run build",
+    "start": "npm --prefix server start",
+    "verify": "node tools/verify-react.mjs"
+  }
+}
