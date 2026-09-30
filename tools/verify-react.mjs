@@ -285,8 +285,14 @@ async function main() {
   check('游客无删除入口', guestDel, guestDel === 0);
 
   // ⑥ 管理员登录 + 添加按钮最右
+  await send('Page.navigate', { url: `${BASE_URL}/admin` });
+  await sleep(1200);
+  await send('Page.reload');
+  await sleep(1200);
+  const directAdmin = await ev(`({path:location.pathname, hash:location.hash, gate:!!document.querySelector('input[type=password]')})`);
+  check('/admin 直接访问和刷新', directAdmin, directAdmin.path==='/admin' && !directAdmin.hash && directAdmin.gate);
   const login = await ev(`(async()=>{
-    location.hash='#/admin'; await new Promise(r=>setTimeout(r,800));
+
     const inp=document.querySelector('input[type=password]');
     if(!inp) return {gate:false};
     const setV=(e,v)=>{Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(e,v);
@@ -306,6 +312,18 @@ async function main() {
   })()`, true);
   check('管理员登录·添加按钮最右', login,
     login.gate && login.panel && login.添加最右 === true && login.rows === 1 && login.n === 4);
+
+  await send('Page.navigate', { url: `${BASE_URL}/admin` });
+  await sleep(1000);
+  await ev(`[...document.querySelectorAll('button')].find(b=>b.textContent.includes('返回地图')).click()`);
+  await sleep(500);
+  await ev('history.back()');
+  await sleep(500);
+  const backAdmin = await ev(`location.pathname==='/admin' && !location.hash && document.body.innerText.includes('管理后台')`);
+  await ev('history.forward()');
+  await sleep(500);
+  const forwardMap = await ev(`location.pathname==='/' && !location.hash && !!document.querySelector('.leaflet-container')`);
+  check('管理路径返回地图·浏览器前进后退', {backAdmin, forwardMap}, backAdmin && forwardMap);
 
   // ⑦ 点位全部显示缩略图，尺寸随缩放变化
   const zooms = await ev(`(async()=>{
@@ -853,6 +871,10 @@ async function main() {
       卡片数: pills.length,
       序号图钉数: document.querySelectorAll('.pin-ck-seq').length,
       序号: seqs,
+      数字在图钉内: [...document.querySelectorAll('.pin-ck-seq .num')].every(n => {
+        const r=n.getBoundingClientRect(), p=n.parentElement.getBoundingClientRect();
+        return r.width>0 && r.height>0 && r.left>=p.left && r.right<=p.right+1 && r.top>=p.top && r.bottom<=p.bottom;
+      }),
       名称: pills.map(e=>e.querySelector('.nm')?.textContent||''),
       类型: pills.map(e=>e.querySelector('.kd')?.textContent||'').sort(),
       卡片尺寸: pr? [Math.round(pr.width), Math.round(pr.height)] : null,
@@ -864,7 +886,7 @@ async function main() {
     };
   })()`);
   check('打卡点立标卡片·显示类型', kindMix,
-    kindMix.卡片数 === 2 && kindMix.序号图钉数 === 3
+    kindMix.数字在图钉内 && kindMix.卡片数 === 2 && kindMix.序号图钉数 === 3
     && JSON.stringify(kindMix.序号) === JSON.stringify(['1','2','3'])   // 按路线重编，不是 2/4/5
     && kindMix.名称.includes('城堡机位') && kindMix.名称.includes('黄油啤酒摊')
     && kindMix.名称里没有数字
@@ -872,6 +894,24 @@ async function main() {
     && kindMix.比官方点位更大 === true
     // 自定义类型必须显示出来，而不是被统一成「我的打卡」
     && kindMix.类型.includes('必拍机位') && kindMix.类型.some(t=>t.includes('自创类型')));
+
+  const typeVisibility = await ev(`(async()=>{
+    document.querySelector('[aria-label="地图显示管理"]').click();
+    await new Promise(r=>setTimeout(r,400));
+    const switches=[...document.querySelectorAll('.mantine-Popover-dropdown .mantine-Switch-root')];
+    const toggle=(label)=>switches.find(s=>s.querySelector('.mantine-Text-root')?.textContent===label)?.querySelector('input').click();
+    const count=()=>document.querySelectorAll('.pin-ck').length;
+    const custom=switches.some(s=>s.textContent.includes('自创类型'));
+    toggle('自创类型'); await new Promise(r=>setTimeout(r,200)); const one=count();
+    toggle('美食'); await new Promise(r=>setTimeout(r,200)); const both=count();
+    toggle('路线'); await new Promise(r=>setTimeout(r,200)); const routes=count();
+    toggle('自创类型'); await new Promise(r=>setTimeout(r,200)); const restored=count();
+    return {custom, one, both, routes, restored};
+  })()`, true);
+  check('按打卡类型显隐·多类型任一开启即显示', typeVisibility,
+    typeVisibility.custom && typeVisibility.one===5 && typeVisibility.both===4
+    && typeVisibility.routes===1 && typeVisibility.restored===2);
+  await reload();
 
   // 列表同样只在路线类型前加序号，并显示完整类型
   await openList();
@@ -1022,7 +1062,7 @@ async function main() {
   })()`);
   check('显示管理为 Popover', vis,
     vis.popover && vis.isPopover && vis.drawers === 0
-    && vis.switches === 7 && vis.on === 7 && vis.hasTitle);
+    && vis.switches === 6 && vis.on === 6 && vis.hasTitle);
 
   // 真实点击 Popover 外部 → 关闭
   await realClick(195, 700);
@@ -1296,6 +1336,7 @@ async function main() {
       return {
         opened:true,
         有描述区:!!note,
+        无横向溢出: [modal, ...modal.querySelectorAll('.mantine-Modal-body, .ubr-lightbox, .ubr-lightbox-note, .mantine-ScrollArea-viewport')].every(e=>e.scrollWidth<=e.clientWidth+1),
         描述字数: body? body.textContent.length : 0,
         可滚动: vp? vp.scrollHeight > vp.clientHeight : null,
         图片未超屏: ir.top>=0 && ir.bottom<=innerHeight && ir.left>=0 && ir.right<=innerWidth,
@@ -1308,7 +1349,7 @@ async function main() {
   check('大图显示完整描述·自适应·无外链', lightboxNote,
     lightboxNote.detailClipped && Number(lightboxNote.detailClipped.lines) > 0
     && lightboxNote.detailClipped.clipped === true          // 详情里确实被截断
-    && lightboxNote.view.opened && lightboxNote.view.有描述区
+    && lightboxNote.view.无横向溢出 && lightboxNote.view.opened && lightboxNote.view.有描述区
     && lightboxNote.view.描述字数 > 400                      // 大图里给的是全文
     && lightboxNote.view.可滚动 === true                     // 超高时可滚动
     && lightboxNote.view.图片未超屏 === true

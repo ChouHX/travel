@@ -23,22 +23,22 @@ export function PhotoViewer({ src, title, note, onClose }: Props) {
     <Modal
       opened={!!src}
       onClose={onClose}
-      size="auto"
+      size="min(1400px, calc(100vw - 32px))"
       centered
       // Drawer 与 Modal 默认都是 z-index 200，并列会互相盖住；这里显式抬高
       zIndex={1000}
       title={title || '查看大图'}
       overlayProps={{ backgroundOpacity: 0.72, blur: 3 }}
       styles={{
-        content: { background: 'transparent', boxShadow: 'none' },
+        content: { minWidth: 0, background: 'transparent', boxShadow: 'none' },
         header: { background: 'transparent' },
-        title: { color: '#fff', fontWeight: 600 },
+        title: { minWidth: 0, overflowWrap: 'anywhere', color: '#fff', fontWeight: 600 },
         close: { color: '#fff' },
         body: { padding: 0 },
       }}
     >
       {src && (
-        <Stack gap={0} align="center" className={note ? 'ubr-lightbox-hasnote' : undefined}>
+        <Stack gap={0} align="center" className={`ubr-lightbox${note ? ' ubr-lightbox-hasnote' : ''}`}>
           {/* 尺寸交给 CSS 限制在视口内，不设固定值。
               想放大看细节时用浏览器原生手势（触控板双指、浏览器缩放），
               比自己实现一套缩放更可靠，也符合用户直觉。 */}

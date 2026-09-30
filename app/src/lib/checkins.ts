@@ -33,3 +33,16 @@ export function buildThumbs(
   }
   return out
 }
+
+/** 类型开关与官方分类使用独立的键，避免同名冲突。 */
+export const kindVisibilityKey = (kind: string) => `checkin:${kind}`
+export const checkinKinds = (mark: Checkin) =>
+  [...new Set(mark.kinds?.length ? mark.kinds : [mark.kind || '其他'])]
+
+export function checkinTypeCounts(marks: Checkin[]) {
+  const counts = new Map<string, number>()
+  for (const mark of marks) {
+    for (const kind of checkinKinds(mark)) counts.set(kind, (counts.get(kind) ?? 0) + 1)
+  }
+  return Array.from(counts, ([kind, count]) => ({ kind, count }))
+}

@@ -1,5 +1,6 @@
 import { ActionIcon, Badge, Button, Group, Popover, ScrollArea, Stack, Switch, Text, Tooltip } from '@mantine/core'
-import { CATS, MY_CAT } from '../constants'
+import { kindVisibilityKey } from '../lib/checkins'
+import { CATS, kindColorFor } from '../constants'
 
 export const EYE_ICON =
   'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7zm10 3a3 3 0 100-6 3 3 0 000 6z'
@@ -10,7 +11,7 @@ interface Props {
   onToggle: (key: string) => void
   onSetAll: (allHidden: boolean) => void
   poiCounts: Record<string, number>
-  mineCount: number
+  markTypes: { kind: string; count: number }[]
   mobile: boolean
 }
 
@@ -25,7 +26,7 @@ export function VisibilityPopover({
   onToggle,
   onSetAll,
   poiCounts,
-  mineCount,
+  markTypes,
   mobile,
 }: Props) {
   const items = [
@@ -36,11 +37,13 @@ export function VisibilityPopover({
       n: poiCounts[c.key] ?? 0,
       mine: false,
     })),
-    { key: MY_CAT, label: '我的打卡', color: '#4a7fae', n: mineCount, mine: true },
+    ...markTypes.map(({ kind, count }) => ({
+      key: kindVisibilityKey(kind), label: kind, color: kindColorFor(kind), n: count, mine: true,
+    })),
   ]
 
   const allHidden = items.every((it) => hidden.includes(it.key))
-  const shown = items.length - hidden.length
+  const shown = items.filter((it) => !hidden.includes(it.key)).length
 
   return (
     <Popover
@@ -57,7 +60,7 @@ export function VisibilityPopover({
         <Tooltip label="地图显示管理" withArrow>
           <ActionIcon
             size="lg"
-            variant={hidden.length ? 'filled' : 'default'}
+            variant={shown < items.length ? 'filled' : 'default'}
             color="sky"
             aria-label="地图显示管理"
             style={{ boxShadow: 'var(--ubr-shadow)' }}
@@ -76,13 +79,13 @@ export function VisibilityPopover({
           <Text fw={600} size="sm">
             地图显示
           </Text>
-          <Badge size="xs" variant="light" color={hidden.length ? 'sky' : 'gray'}>
+          <Badge size="xs" variant="light" color={shown < items.length ? 'sky' : 'gray'}>
             {shown} / {items.length}
           </Badge>
         </Group>
 
         <Text size="xs" c="dimmed" mb={4}>
-          关掉的系列不出现在地图上，浏览用的分类标签不受影响。
+          按类型控制地图显隐，不影响列表。多类型点位只要有一个类型开启就显示。
         </Text>
 
         <ScrollArea.Autosize mah={mobile ? '46vh' : 360} type="auto">

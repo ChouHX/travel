@@ -4,11 +4,11 @@ import { Center, Drawer, ActionIcon, Button, Group, Loader, Text, TextInput } fr
 import { useMediaQuery } from '@mantine/hooks'
 import poisData from './data/pois.json'
 import { CATS, MY_CAT } from './constants'
-import { buildThumbs, routeIndexMap } from './lib/checkins'
+import { buildThumbs, routeIndexMap, checkinKinds, checkinTypeCounts, kindVisibilityKey } from './lib/checkins'
 import type { Editing, Poi } from './types'
 import { useCheckins } from './hooks/useCheckins'
 import { useAdmin } from './hooks/useAdmin'
-import { useHashRoute } from './hooks/useHashRoute'
+import { useRoute } from './hooks/useRoute'
 import { ApiError, api, downloadJson } from './lib/api'
 import { panIntoVisibleArea } from './lib/map'
 import { MapCanvas, type Focus } from './components/MapCanvas'
@@ -24,7 +24,7 @@ import { PhotoViewer } from './components/PhotoViewer'
 
 const POIS = poisData as unknown as Poi[]
 const POIS_OK = POIS.filter((p) => p.coordValid !== false)
-const ALL_CATS = [...CATS.map((c) => c.key), MY_CAT]
+const OFFICIAL_CATS = CATS.map((c) => c.key)
 
 const icon = (path: string, size = 16) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -38,7 +38,7 @@ interface Toast {
 }
 
 export function App() {
-  const [route, navigate] = useHashRoute()
+  const [route, navigate] = useRoute()
   const admin = useAdmin()
   const ck = useCheckins()
   const mobile = useMediaQuery('(max-width: 860px)') ?? true
@@ -113,7 +113,7 @@ export function App() {
 
   /* ---------- 派生 ---------- */
   const q = query.trim().toLowerCase()
-  const visibleCats = useMemo(() => ALL_CATS.filter((k) => !hidden.includes(k)), [hidden])
+  const visibleCats = useMemo(() => OFFICIAL_CATS.filter((k) => !hidden.includes(k)), [hidden])
 
   /** 列表内容：跟着 tab 走（浏览范围） */
   const listedPois = useMemo(
@@ -150,9 +150,11 @@ export function App() {
     [visibleCats],
   )
   const mapMarks = useMemo(
-    () => (visibleCats.includes(MY_CAT) ? ck.marks : []),
-    [ck.marks, visibleCats],
+    () => ck.marks.filter((mark) => checkinKinds(mark).some((kind) => !hidden.includes(kindVisibilityKey(kind)))),
+    [ck.marks, hidden],
   )
+
+  const markTypes = useMemo(() => checkinTypeCounts(ck.marks), [ck.marks])
 
   /** 路线点的显示序号：按路线自身从 1 编号，不受其它类型影响 */
   const routeSeq = useMemo(() => routeIndexMap(ck.marks), [ck.marks])
@@ -278,7 +280,7 @@ export function App() {
         })
         setSelected({ kind: 'checkin', id: rec.id })
         setOpen(true)
-        setHidden((prev) => prev.filter((k) => k !== MY_CAT))
+        setHidden((prev) => prev.filter((k) => !checkinKinds(rec).some((kind) => k === kindVisibilityKey(kind))))
         setFocus({ kind: 'checkin', id: rec.id, ts: Date.now() })
         notify(`已加入打卡清单：${poi.name}`)
       })
@@ -402,9 +404,9 @@ export function App() {
         onToggleHidden={(k) =>
           setHidden((prev) => (prev.includes(k) ? prev.filter((x) => x !== k) : [...prev, k]))
         }
-        onSetAllHidden={(allHidden) => setHidden(allHidden ? [...ALL_CATS] : [])}
+        onSetAllHidden={(allHidden) => setHidden(allHidden ? [...OFFICIAL_CATS, ...markTypes.map(({ kind }) => kindVisibilityKey(kind))] : [])}
         poiCounts={poiCounts}
-        mineCount={ck.marks.length}
+        markTypes={markTypes}
         mobile={mobile}
       />
 

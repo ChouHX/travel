@@ -19,7 +19,7 @@ interface Props {
   onToggleHidden: (key: string) => void
   onSetAllHidden: (allHidden: boolean) => void
   poiCounts: Record<string, number>
-  mineCount: number
+  markTypes: { kind: string; count: number }[]
   mobile: boolean
 }
 
@@ -38,7 +38,7 @@ export function MapToolbar({
   onToggleHidden,
   onSetAllHidden,
   poiCounts,
-  mineCount,
+  markTypes,
   mobile,
 }: Props) {
   return (
@@ -75,7 +75,7 @@ export function MapToolbar({
           onToggle={onToggleHidden}
           onSetAll={onSetAllHidden}
           poiCounts={poiCounts}
-          mineCount={mineCount}
+          markTypes={markTypes}
           mobile={mobile}
         />
       </Group>

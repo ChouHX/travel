@@ -210,6 +210,24 @@ body {
   height: 36px;
   transform-origin: 50% 100%;
 }
+.pin-ck-seq .wrap svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pin-ck-seq .num {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+}
 .pin-ck.pop .wrap {
   animation: ubr-drop 0.4s cubic-bezier(0.22, 1.35, 0.5, 1) both;
 }
@@ -647,6 +665,10 @@ body {
 }
 
 /* ---------- 大图查看 ---------- */
+.ubr-lightbox {
+  width: 100%;
+  min-width: 0;
+}
 .ubr-lightbox-img {
   display: block;
   margin: 0 auto;
@@ -655,10 +677,10 @@ body {
   /* 自适应视口：不固定尺寸，也不裁剪（contain 保证完整显示）。
      用户想放大看细节时用浏览器原生手势（触控板双指 / 浏览器缩放），
      比自己实现一套缩放更可靠，也不会有手势冲突。 */
-  max-width: min(94vw, 1400px);
+  max-width: 100%;
   max-height: 76vh;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 0;
   background: #1b1f24;
 }
 /* 有描述时把图片再收一点，给下方文字留出空间，整体仍不超出视口 */
@@ -666,7 +688,9 @@ body {
   max-height: 60vh;
 }
 .ubr-lightbox-note {
-  width: min(94vw, 1400px);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: 12px;
   padding: 10px 14px;
   border-radius: 10px;
@@ -682,7 +706,7 @@ body {
 }
 @media (max-width: 860px) {
   .ubr-lightbox-img {
-    max-width: 94vw;
+    max-width: 100%;
     max-height: 70vh;
   }
   .ubr-lightbox-hasnote .ubr-lightbox-img {
