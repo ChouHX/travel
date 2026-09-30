@@ -591,16 +591,6 @@ export function App() {
       )}
 
       {toast && <div className={`ubr-toast${toast.kind === 'warn' ? ' warn' : ''}`}>{toast.text}</div>}
-
-      {!admin.authed && (
-        <Text
-          size="xs"
-          c="dimmed"
-          style={{ position: 'absolute', left: 12, bottom: 10, zIndex: 400, pointerEvents: 'none' }}
-        >
-          浏览模式 · 登录后可添加打卡点
-        </Text>
-      )}
     </div>
   )
 }

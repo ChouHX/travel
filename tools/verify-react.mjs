@@ -258,11 +258,25 @@ async function main() {
     && toolbarGuest.fab.length === 1);                    // fab 只剩「点位列表」
 
   // ⑤ 游客只读
-  const readOnly = await ev(`(()=>({
-    addBtn:[...document.querySelectorAll('button')].some(b=>b.textContent.includes('添加打卡点')),
-    io:[...document.querySelectorAll('button')].some(b=>/导入|导出/.test(b.textContent)),
-    hint:document.body.innerText.includes('浏览模式')}))()`);
-  check('游客只读', readOnly, !readOnly.addBtn && !readOnly.io && readOnly.hint);
+  //   不能用界面文案判断身份 —— 那行「浏览模式」提示已按需求移除。
+  //   改为直接验证权限本身：未登录时写接口必须被拒，且界面上没有编辑入口。
+  const readOnly = await (async () => {
+    const ui = await ev(`(()=>({
+      addBtn:[...document.querySelectorAll('button')].some(b=>b.textContent.includes('添加打卡点')),
+      io:[...document.querySelectorAll('button')].some(b=>/导入|导出/.test(b.textContent)),
+    }))()`)
+    // 直接打接口：未带 token 的写操作应当被拒
+    const res = await fetch(`${BASE_URL}/api/checkins`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ name: '不应被创建', lng: 116.68, lat: 39.85 }),
+    })
+    return { ...ui, 接口状态: res.status, 无编辑入口: !ui.addBtn && !ui.io }
+  })()
+  check('游客只读', readOnly,
+    !readOnly.addBtn && !readOnly.io
+    && readOnly.接口状态 === 401            // 权限由服务端强制，不只是隐藏按钮
+    && readOnly.无编辑入口 === true);
 
   // 游客不该看到任何删除入口
   await openList();
