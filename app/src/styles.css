@@ -513,6 +513,55 @@ body {
   width: 48px;
 }
 
+/* ---------- 照片投放区（可点击 / 可粘贴） ---------- */
+.ubr-photo-drop {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 18px 14px;
+  border-radius: 12px;
+  border: 1.5px dashed var(--ubr-line);
+  background: var(--ubr-surface-2);
+  color: var(--ubr-ink-dim);
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    border-color 0.16s ease,
+    background-color 0.16s ease,
+    color 0.16s ease;
+}
+.ubr-photo-drop:hover:not(:disabled) {
+  border-color: var(--ubr-brand);
+  background: #eef7ff;
+  color: var(--ubr-brand);
+}
+.ubr-photo-drop:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.ubr-photo-drop .ico {
+  display: grid;
+  place-items: center;
+  margin-bottom: 2px;
+}
+.ubr-photo-drop .t1 {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.ubr-photo-drop .t2 {
+  font-size: 11px;
+  opacity: 0.75;
+}
+/* 刚从剪贴板读到图片：短暂高亮，让用户确认"粘上了" */
+.ubr-photo-drop.flash {
+  border-color: var(--ubr-brand);
+  border-style: solid;
+  background: #e6f4ff;
+  color: var(--ubr-brand);
+}
+
 /* ---------- 抽屉内面板 ---------- */
 .ubr-pane {
   padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px));

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Button, Chip, Group, Image, Rating, Stack, Text, Textarea, TextInput } from '@mantine/core'
 import { KINDS } from '../constants'
 import type { Checkin, Editing } from '../types'
@@ -39,8 +39,14 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState<string | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
+  /** 刚从剪贴板读到图片时的短暂高亮反馈 */
+  const [justPasted, setJustPasted] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
   const existingUrl = photoCleared ? undefined : mark?.photoUrl
+
+  // 粘贴监听是常驻的，闭包里拿不到最新的 busy，用 ref 同步
+  const busyRef = useRef(false)
+  busyRef.current = busy
 
   useEffect(() => {
     setName(mark?.name ?? '')
@@ -63,21 +69,62 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
     return () => URL.revokeObjectURL(u)
   }, [photo])
 
-  const pick = async (file: File | null) => {
+  const pick = useCallback(async (file: File | null, fromPaste = false) => {
     if (!file) return
+    if (!file.type.startsWith('image/')) {
+      setErr('粘贴的内容不是图片')
+      return
+    }
     setBusy(true)
     setErr(null)
     try {
       const out = await compressToWebp(file)
       setPhoto(out)
       setPhotoCleared(false)
+      if (fromPaste) {
+        setJustPasted(true)
+        window.setTimeout(() => setJustPasted(false), 1200)
+      }
     } catch (e) {
       setErr(e instanceof Error ? e.message : '图片处理失败')
     } finally {
       setBusy(false)
       if (fileRef.current) fileRef.current.value = ''
     }
-  }
+  }, [])
+
+  /**
+   * 支持直接粘贴截图（桌面端截图后 Ctrl/⌘ + V 即可）。
+   *
+   * 监听挂在 document 上，不需要先点中某个元素 —— 截图工具把图放进剪贴板后，
+   * 用户的心智是"随手粘一下"，要求先聚焦到特定输入框会显得别扭。
+   * 只有剪贴板里确实带图片时才拦截，纯文本粘贴照常交给输入框。
+   */
+  useEffect(() => {
+    const onPaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items
+      if (!items) return
+
+      let file: File | null = null
+      for (const it of items) {
+        if (it.kind === 'file' && it.type.startsWith('image/')) {
+          file = it.getAsFile()
+          if (file) break
+        }
+      }
+      if (!file) return                 // 没有图片就不干预（普通文本粘贴）
+
+      e.preventDefault()
+      if (busyRef.current) {
+        setErr('上一张图片还在处理，请稍候')
+        return
+      }
+      void pick(file, true)
+    }
+
+    document.addEventListener('paste', onPaste)
+    return () => document.removeEventListener('paste', onPaste)
+  }, [pick])
 
   const shownUrl = preview ?? existingUrl
   const hasPhoto = !!shownUrl
@@ -156,18 +203,24 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
                 {fmtBytes(photo.bytes)}（原始 {fmtBytes(photo.originalBytes)}）
               </Text>
             )}
+            <Text size="xs" c="dimmed">
+              也可以直接粘贴截图替换（Ctrl/⌘ + V）
+            </Text>
           </Stack>
         ) : (
-          <Button
-            variant="light"
-            color="sky"
-            leftSection={icon('M12 5v14M5 12h14')}
+          // 整块区域都可点击，同时也是粘贴目标 —— 桌面端截图后直接 Ctrl/⌘+V 即可
+          <button
+            type="button"
+            className={`ubr-photo-drop${justPasted ? ' flash' : ''}`}
             onClick={() => fileRef.current?.click()}
-            loading={busy}
-            fullWidth
+            disabled={busy}
           >
-            {busy ? '压缩中…' : '选择照片'}
-          </Button>
+            <span className="ico">{icon('M12 5v14M5 12h14', 20)}</span>
+            <span className="t1">
+              {busy ? '压缩中…' : justPasted ? '已读取剪贴板图片' : '选择照片'}
+            </span>
+            <span className="t2">或直接粘贴截图（Ctrl/⌘ + V）</span>
+          </button>
         )}
 
         <input
@@ -178,7 +231,7 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
           onChange={(e) => void pick(e.currentTarget.files?.[0] ?? null)}
         />
         <Text size="xs" c="dimmed" mt={6}>
-          照片在本地压缩（长边 1600px）并转为 WebP，不会上传到任何服务器
+          照片会先在本地压缩（长边 1600px）并转为 WebP，再上传到服务端与他人共享
         </Text>
         {err && (
           <Text size="xs" c="red" mt={4}>

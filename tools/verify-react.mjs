@@ -1019,6 +1019,70 @@ async function main() {
   check('落点建点+照片上传', flow,
     flow.form && flow.marks === 1 && flow.hasPhoto && flow.photos === 1);
 
+  // ⑩2 支持直接粘贴截图上传
+  //   桌面端截图工具会把图放进剪贴板，用户期望 Ctrl/⌘+V 就能贴上。
+  //   监听挂在 document 上（不要求先聚焦某个元素），且只在剪贴板确实含图片时拦截，
+  //   纯文本粘贴必须照常放行，否则会影响备注输入。
+  await pressEsc()
+  const pasteFlow = await ev(`(async()=>{
+    // 重新进入编辑表单
+    [...document.querySelectorAll('.ubr-map-tools button')]
+      .find(b=>b.getAttribute('aria-label')==='添加打卡点')?.click();
+    await new Promise(r=>setTimeout(r,400));
+    const el=document.querySelector('.leaflet-container'), r=el.getBoundingClientRect();
+    for(const ty of ['mousedown','mouseup','click'])
+      el.dispatchEvent(new MouseEvent(ty,{clientX:r.left+r.width/2,clientY:r.top+r.height*0.35,
+        bubbles:true,cancelable:true,view:window,button:0}));
+    await new Promise(r=>setTimeout(r,900));
+
+    const drop=document.querySelector('.ubr-photo-drop');
+    const hint = drop? drop.innerText.replace(/\\s+/g,' ').trim() : null;
+
+    // 造一张 1400x900 的 PNG，文件名模仿截图工具
+    const c=document.createElement('canvas'); c.width=1400; c.height=900;
+    const x=c.getContext('2d'); x.fillStyle='#0f7fc4'; x.fillRect(0,0,1400,900);
+    const blob=await new Promise(rr=>c.toBlob(rr,'image/png'));
+
+    // 纯文本粘贴不应被 preventDefault
+    const textDt=new DataTransfer(); textDt.setData('text/plain','普通文本');
+    const notCancelled=document.dispatchEvent(
+      new ClipboardEvent('paste',{clipboardData:textDt,bubbles:true,cancelable:true}));
+
+    // 粘贴图片
+    const dt=new DataTransfer();
+    dt.items.add(new File([blob],'image.png',{type:'image/png'}));
+    document.dispatchEvent(new ClipboardEvent('paste',{clipboardData:dt,bubbles:true,cancelable:true}));
+    await new Promise(rr=>setTimeout(rr,2600));
+
+    const imgs=[...document.querySelectorAll('.ubr-pane img')];
+    const info=[...document.querySelectorAll('.ubr-pane *')]
+      .map(e=>e.textContent||'').find(t=>t.includes('已压缩为'));
+
+    // 名字填好再保存，供后面核对服务端
+    const setV=(e,v)=>{Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(e,v);
+      e.dispatchEvent(new Event('input',{bubbles:true}))};
+    const inp=[...document.querySelectorAll('input')].filter(i=>i.type==='text').pop();
+    if(inp) setV(inp,'粘贴截图测试');
+    await new Promise(rr=>setTimeout(rr,250));
+    [...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存')?.click();
+    await new Promise(rr=>setTimeout(rr,2200));
+
+    const list=((await (await fetch('/api/checkins')).json()).results||[])
+      .filter(m=>m.name==='粘贴截图测试');
+    return {hint, 文本粘贴未被拦截:notCancelled,
+      预览已解码: imgs[0]? (imgs[0].complete&&imgs[0].naturalWidth>0) : null,
+      压缩信息: info? info.trim().slice(-40) : null,
+      原始KB: Math.round(blob.size/1024),
+      服务端尺寸: list[0]? list[0].photoW+'×'+list[0].photoH : null,
+      服务端类型: list[0]?.photoType ?? null};
+  })()`, true);
+  check('粘贴截图上传', pasteFlow,
+    !!pasteFlow.hint && pasteFlow.hint.includes('粘贴')
+    && pasteFlow.文本粘贴未被拦截 === true       // 不能把普通文本也吞掉
+    && pasteFlow.预览已解码 === true
+    && pasteFlow.服务端尺寸 === '1400×900'       // 原图尺寸保留
+    && pasteFlow.服务端类型 === 'image/webp');    // 走的是同一套压缩链路
+
   // ⑪ 详情：可见、不被卡片遮挡、无经纬度
   const detail = await ev(`(async()=>{
     /* 关闭抽屉由外层的 pressEsc 负责，见各测试步骤 */
