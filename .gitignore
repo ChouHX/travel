@@ -3,6 +3,12 @@ server/var/
 server/public/
 *.log
 
+# 本地配置：根目录 .env 由 compose 读取，里面会有管理员口令 —— 绝不能提交。
+# 模板是 .env.example，它需要被跟踪。
+.env
+server/.env
+.env.local
+
 # 逆向分析过程中的存档：官网打包 JS 与页面快照属于第三方产物，
 # 只是当初用来定位瓦片服务地址的中间材料，不进公开仓库
 tools/raw
