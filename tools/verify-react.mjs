@@ -1127,6 +1127,55 @@ async function main() {
     && detail.点位在卡片上方 === true && detail.卡片占屏比 <= 40 && detail.外链在标题右侧
     && !detail.含LNG && !detail.含LAT && !detail.含坐标数字);
 
+  // ⑪2 缩略图点击查看大图
+  //   关键断言是「ESC 一次只关大图」—— 踩过的坑：Drawer 与 Modal 各自独立使用时，
+  //   Mantine 的 ESC 监听都注册在 window 的 capture 阶段，同一个事件会触发两边 onClose，
+  //   表现为"看大图按 ESC，底下的详情也一起没了"。
+  //   修法是大图打开时把 Drawer 的 closeOnEscape 关掉，由上层显式协调。
+  const lightbox = await ev(`(async()=>{
+    const thumbBtn=document.querySelector('.ubr-detail-thumb-btn');
+    if(!thumbBtn) return {thumb:false};
+    const thumbImg=thumbBtn.querySelector('img');
+    const thumbRect=thumbImg.getBoundingClientRect();
+    const affordance={ cursor:getComputedStyle(thumbBtn).cursor,
+      aria:thumbBtn.getAttribute('aria-label'),
+      hint:!!thumbBtn.querySelector('.zoom-hint') };
+
+    thumbBtn.click();
+    await new Promise(r=>setTimeout(r,1400));
+    const big=document.querySelector('.ubr-lightbox-img');
+    if(!big) return {thumb:true, opened:false};
+    const br=big.getBoundingClientRect();
+    const inner=document.querySelector('.mantine-Modal-inner');
+    const opened={ 原图:big.naturalWidth+'×'+big.naturalHeight,
+      显示:Math.round(br.width)+'×'+Math.round(br.height),
+      放大倍数:+(br.width/Math.max(1,thumbRect.width)).toFixed(1),
+      在视口内: br.top>=0 && br.bottom<=innerHeight && br.left>=0 && br.right<=innerWidth,
+      zIndex: inner? getComputedStyle(inner).zIndex : null,
+      标题: document.querySelector('.mantine-Modal-title')?.textContent||null };
+
+    // ESC 一次：只应关掉大图
+    return {thumb:true, opened, affordance};
+  })()`, true);
+  await pressEsc();
+  const afterEsc1 = await ev(`({大图:!!document.querySelector('.ubr-lightbox-img'),
+    详情:!!document.querySelector('.ubr-detail-name'),
+    抽屉:!!document.querySelector('.mantine-Drawer-content')})`);
+  await pressEsc();
+  const afterEsc2 = await ev(`!!document.querySelector('.mantine-Drawer-content')`);
+
+  check('缩略图点击看大图', lightbox,
+    lightbox.thumb && lightbox.opened
+    && lightbox.affordance.cursor === 'zoom-in'       // 有明确的可点击提示
+    && lightbox.affordance.aria === '查看大图'
+    && lightbox.affordance.hint
+    && lightbox.opened.在视口内 === true               // 大图不能溢出屏幕
+    && lightbox.opened.放大倍数 > 1                   // 确实比缩略图大
+    && Number(lightbox.opened.zIndex) > 200           // 必须盖在 Drawer(200) 之上
+    && afterEsc1.大图 === false                        // 一次 ESC 关大图
+    && afterEsc1.详情 === true && afterEsc1.抽屉 === true   // 详情不能跟着一起关
+    && afterEsc2 === false);                           // 二次 ESC 才关详情
+
   // ⑫ Mantine Drawer 动效：进场需有中间帧，退场后节点移除
   //   必须先收起可能残留的详情抽屉，否则 fab 处于隐藏态，
   //   对它 .click() 只是重新"打开"一个已开的抽屉，不会有进场动画。

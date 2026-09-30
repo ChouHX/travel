@@ -20,6 +20,7 @@ import { SpotEditor, type EditorResult } from './components/SpotEditor'
 import { SheetGrabber } from './components/SheetGrabber'
 import { AdminGate } from './components/AdminGate'
 import { AdminPanel } from './components/AdminPanel'
+import { PhotoViewer } from './components/PhotoViewer'
 
 const POIS = poisData as unknown as Poi[]
 const POIS_OK = POIS.filter((p) => p.coordValid !== false)
@@ -64,6 +65,11 @@ export function App() {
   const [listOpen, setListOpen] = useState(false)
   const [focus, setFocus] = useState<Focus | null>(null)
   const [toast, setToast] = useState<Toast | null>(null)
+  /**
+   * 大图查看。状态放在 App 而不是详情组件里 —— 打开时要临时关掉抽屉的 ESC 响应，
+   * 这需要在上层协调（原因见 PhotoViewer 的注释）。
+   */
+  const [viewer, setViewer] = useState<{ src: string; title: string } | null>(null)
 
   const mapRef = useRef<LeafletMap | null>(null)
   const toastTimer = useRef<number | undefined>(undefined)
@@ -102,6 +108,7 @@ export function App() {
     setListOpen(false)
     setSelected(null)
     setEditing(null)
+    setViewer(null)
   }, [])
 
   /* ---------- 派生 ---------- */
@@ -181,6 +188,7 @@ export function App() {
   }, [])
 
   const openPoi = useCallback((poi: Poi) => {
+    setViewer(null)
     setEditing(null)
     setListOpen(false)   // 从列表点进详情时收起列表，不做层叠导航
     setSelected({ kind: 'poi', id: poi.id })
@@ -191,6 +199,7 @@ export function App() {
 
   const openMark = useCallback(
     (id: string) => {
+      setViewer(null)
       setEditing(null)
       setListOpen(false)   // 同上：详情与列表是同一层，不叠加
       setSelected({ kind: 'checkin', id })
@@ -422,6 +431,9 @@ export function App() {
         opened={mainOpen}
         // 一次性收起：不做"先退一层"的层叠导航
         onClose={closeDrawer}
+        // 大图打开时让出 ESC：Mantine 的 ESC 监听在 window 的 capture 阶段，
+        // 两层同时监听时同一个 ESC 会触发两边 onClose，表现为"看大图按 ESC 详情也没了"。
+        closeOnEscape={!viewer}
         // 两端统一用底部抽屉：桌面端此前是右侧 380px 全高面板，
         // 与移动端的展开方式、关闭手势、尺寸规律都不一致，维护与体验都要各写一套。
         position="bottom"
@@ -506,6 +518,15 @@ export function App() {
               onRemoveMark={handleRemove}
               onClose={closeDrawer}
               routeSeq={routeSeq}
+              onZoom={(src) =>
+                setViewer({
+                  src,
+                  title:
+                    (selected?.kind === 'checkin'
+                      ? ck.marks.find((m) => m.id === selected.id)?.name
+                      : POIS.find((p) => p.id === selected?.id)?.name) || '查看大图',
+                })
+              }
               fallbackImg={
                 activeMark?.fromPoi
                   ? POIS.find((p) => p.id === activeMark.fromPoi)?.img
@@ -589,6 +610,12 @@ export function App() {
           </Button>
         </div>
       )}
+
+      <PhotoViewer
+        src={viewer?.src ?? null}
+        title={viewer?.title ?? ''}
+        onClose={() => setViewer(null)}
+      />
 
       {toast && <div className={`ubr-toast${toast.kind === 'warn' ? ' warn' : ''}`}>{toast.text}</div>}
     </div>

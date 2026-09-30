@@ -620,6 +620,18 @@ body {
   gap: 12px;
   align-items: flex-start;
 }
+/* 缩略图外层的按钮：让「可点击放大」这件事有明确的可供性 */
+.ubr-detail-thumb-btn {
+  position: relative;
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 12px;
+  cursor: zoom-in;
+  line-height: 0;
+  overflow: hidden;
+}
 .ubr-detail-thumb {
   width: 120px;
   height: 120px;
@@ -628,9 +640,55 @@ body {
   flex: none;
   background: var(--ubr-surface-2);
   border: 1px solid var(--ubr-line);
+  display: block;
+  transition: transform 0.22s cubic-bezier(0.32, 0.9, 0.3, 1);
+}
+/* 悬停轻微放大，暗示"可以点开看更大"。
+   只作用在图片上、不涉及文字，所以不会出现之前那种发虚问题 */
+.ubr-detail-thumb-btn:hover .ubr-detail-thumb {
+  transform: scale(1.06);
 }
 .ubr-detail-thumb.placeholder {
   background: linear-gradient(135deg, #eaf0f6, #d7e0e8);
+}
+/* 右下角的放大镜角标：默认淡显，悬停时变实 */
+.ubr-detail-thumb-btn .zoom-hint {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(20, 26, 32, 0.55);
+  color: #fff;
+  opacity: 0.72;
+  transition: opacity 0.16s ease, background 0.16s ease;
+  pointer-events: none;
+}
+.ubr-detail-thumb-btn:hover .zoom-hint {
+  opacity: 1;
+  background: rgba(20, 26, 32, 0.78);
+}
+
+/* ---------- 大图查看 ---------- */
+.ubr-lightbox-img {
+  display: block;
+  margin: 0 auto;
+  max-width: min(92vw, 1200px);
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #1b1f24;
+}
+@media (max-width: 860px) {
+  .ubr-lightbox-img {
+    max-width: 94vw;
+    max-height: 72vh;
+  }
 }
 .ubr-detail-txt {
   flex: 1;

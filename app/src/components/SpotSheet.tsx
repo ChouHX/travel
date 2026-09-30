@@ -24,6 +24,8 @@ interface Props {
   fallbackImg?: string
   /** 路线点的显示序号；只有路线类型会用到 */
   routeSeq: Record<string, number>
+  /** 点击缩略图时请求上层打开大图（状态由 App 持有，便于协调 ESC 行为） */
+  onZoom: (src: string) => void
 }
 
 /**
@@ -33,34 +35,52 @@ interface Props {
  * 外链按钮收进右上角。官方点位与打卡点共用同一套骨架。
  * 坐标属于内部数据，不在此展示。
  */
-export function SpotSheet({ poi, mark, isAdmin, onAddFromPoi, onEditMark, onToggleDone, onRemoveMark, onClose, fallbackImg, routeSeq }: Props) {
+export function SpotSheet({ poi, mark, isAdmin, onAddFromPoi, onEditMark, onToggleDone, onRemoveMark, onClose, fallbackImg, routeSeq, onZoom }: Props) {
   const photoUrl = mark?.photoUrl ?? fallbackImg
 
   const shell = (thumb: string | null | undefined, body: React.ReactNode, side?: React.ReactNode) => (
-    <div className="ubr-detail">
-      {/* 详情没有 header，关闭按钮内嵌在这里，避免顶部多出一条空白 */}
-      <ActionIcon
-        className="ubr-detail-close"
-        variant="subtle"
-        color="gray"
-        size="sm"
-        aria-label="收起"
-        onClick={onClose}
-      >
-        <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </ActionIcon>
-      <div className="ubr-detail-row">
-        {thumb ? (
-          <img className="ubr-detail-thumb" src={thumb} alt="" loading="lazy" />
-        ) : (
-          <div className="ubr-detail-thumb placeholder" />
-        )}
-        <div className="ubr-detail-txt">{body}</div>
-        {side}
+    <>
+      <div className="ubr-detail">
+        {/* 详情没有 header，关闭按钮内嵌在这里，避免顶部多出一条空白 */}
+        <ActionIcon
+          className="ubr-detail-close"
+          variant="subtle"
+          color="gray"
+          size="sm"
+          aria-label="收起"
+          onClick={onClose}
+        >
+          <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </ActionIcon>
+        <div className="ubr-detail-row">
+          {thumb ? (
+            // 包一层 button：缩略图只有 120px，官方点位原图是 360×360、
+            // 实拍照片是 1600px，放大看细节是常见需求
+            <button
+              type="button"
+              className="ubr-detail-thumb-btn"
+              onClick={() => onZoom(thumb)}
+              aria-label="查看大图"
+              title="查看大图"
+            >
+              <img className="ubr-detail-thumb" src={thumb} alt="" loading="lazy" />
+              <span className="zoom-hint" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width={14} height={14} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5M11 8v6M8 11h6" />
+                </svg>
+              </span>
+            </button>
+          ) : (
+            <div className="ubr-detail-thumb placeholder" />
+          )}
+            <div className="ubr-detail-txt">{body}</div>
+            {side}
+          </div>
       </div>
-    </div>
+    </>
   )
 
   if (poi) {
