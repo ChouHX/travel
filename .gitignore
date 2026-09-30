@@ -17,3 +17,6 @@ tools/api
 
 # TypeScript 增量构建信息
 *.tsbuildinfo
+
+# 临时验证目录
+.tmp-*
