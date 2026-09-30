@@ -12,7 +12,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
-  UPLOAD_DIR, DB_PATH, DATA_DIR,
+  UPLOAD_DIR, DB_PATH, DATA_DIR, normalizeKinds,
   listCheckins, getCheckin, createCheckin, updateCheckin, deleteCheckin,
   clearAllCheckins, countCheckins, removePhotoFile,
 } from './db.mjs'
@@ -96,7 +96,12 @@ function sanitizeCheckinInput(body, { partial = false } = {}) {
   if (!partial || has('name')) out.name = clampStr(body?.name, 120).trim()
   if (!partial || has('note')) out.note = clampStr(body?.note, 2000).trim()
   if (!partial || has('rating')) out.rating = asInt(body?.rating, 0, 5, 0)
-  if (!partial || has('kind')) out.kind = clampStr(body?.kind, 20) || '其他'
+  // 类型标签：支持多个自定义标签。kind 由 db 层从 kinds[0] 派生，这里不再单独收。
+  if (!partial || has('kinds') || has('kind')) {
+    const raw = has('kinds') ? body.kinds : (body.kind ? [body.kind] : [])
+    const kinds = normalizeKinds(raw)
+    out.kinds = kinds.length ? kinds : ['其他']
+  }
   if (!partial || has('done')) out.done = !!body?.done
   if (!partial || has('fromPoi')) out.fromPoi = body?.fromPoi ? clampStr(body.fromPoi, 40) : null
 

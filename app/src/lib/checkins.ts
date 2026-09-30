@@ -9,7 +9,7 @@ import type { Checkin } from '../types'
  */
 export function routeIndexMap(marks: Checkin[]): Record<string, number> {
   const routes = marks
-    .filter((m) => m.kind === ROUTE_KIND)
+    .filter((m) => (m.kinds ?? [m.kind]).includes(ROUTE_KIND))
     .sort((a, b) => (a.seq || 0) - (b.seq || 0))
   const out: Record<string, number> = {}
   routes.forEach((m, i) => { out[m.id] = i + 1 })

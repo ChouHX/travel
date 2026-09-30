@@ -1,5 +1,5 @@
 import { ActionIcon, Badge, Button, Group, Rating, Tooltip } from '@mantine/core'
-import { BRAND, CAT_MAP, KIND_COLOR, OK, showsSeq } from '../constants'
+import { CAT_MAP, kindColorFor, kindsText, OK, showsSeq } from '../constants'
 import type { Checkin, Poi } from '../types'
 import { ConfirmPopover } from './ConfirmPopover'
 
@@ -134,7 +134,8 @@ export function SpotSheet({ poi, mark, isAdmin, onAddFromPoi, onEditMark, onTogg
   }
 
   if (mark) {
-    const color = mark.done ? OK : (KIND_COLOR[mark.kind] ?? BRAND)
+    const kinds = mark.kinds ?? [mark.kind]
+    const color = mark.done ? OK : kindColorFor(kinds)
 
     const side = (
       <Badge size="sm" variant={mark.done ? 'filled' : 'light'} color={mark.done ? 'aqua' : 'sky'}>
@@ -146,11 +147,11 @@ export function SpotSheet({ poi, mark, isAdmin, onAddFromPoi, onEditMark, onTogg
       photoUrl,
       <>
         <div className="ubr-detail-kicker" style={{ color }}>
-          {mark.kind}
+          {kindsText(kinds)}
         </div>
         <div className="ubr-detail-name">
           {/* 同列表：序号只对路线类型有意义 */}
-          {showsSeq(mark.kind) && routeSeq[mark.id] ? `${routeSeq[mark.id]}. ` : ''}
+          {showsSeq(kinds) && routeSeq[mark.id] ? `${routeSeq[mark.id]}. ` : ''}
           {mark.name || '未命名打卡点'}
         </div>
         {mark.rating > 0 && (

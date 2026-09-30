@@ -1,9 +1,11 @@
-import { Button, Group, Modal } from '@mantine/core'
+import { Modal, ScrollArea, Stack, Text } from '@mantine/core'
 
 interface Props {
   /** 要显示的图片地址；null 表示关闭 */
   src: string | null
   title: string
+  /** 详情里被截断的描述，完整显示在图片下方（可滚动） */
+  note?: string
   onClose: () => void
 }
 
@@ -16,7 +18,7 @@ interface Props {
  * 在 document 上做 capture 拦截是来不及的（window capture 更早），
  * 所以改为由上层显式协调。
  */
-export function PhotoViewer({ src, title, onClose }: Props) {
+export function PhotoViewer({ src, title, note, onClose }: Props) {
   return (
     <Modal
       opened={!!src}
@@ -36,22 +38,23 @@ export function PhotoViewer({ src, title, onClose }: Props) {
       }}
     >
       {src && (
-        <>
+        <Stack gap={0} align="center" className={note ? 'ubr-lightbox-hasnote' : undefined}>
+          {/* 尺寸交给 CSS 限制在视口内，不设固定值。
+              想放大看细节时用浏览器原生手势（触控板双指、浏览器缩放），
+              比自己实现一套缩放更可靠，也符合用户直觉。 */}
           <img className="ubr-lightbox-img" src={src} alt={title} />
-          <Group justify="center" mt="sm" gap={8}>
-            <Button
-              size="compact-sm"
-              variant="light"
-              color="gray"
-              component="a"
-              href={src}
-              target="_blank"
-              rel="noreferrer"
-            >
-              在新标签页打开原图
-            </Button>
-          </Group>
-        </>
+
+          {note && (
+            <div className="ubr-lightbox-note">
+              <Text size="xs" fw={600} mb={4} style={{ color: 'rgba(255,255,255,.75)' }}>
+                描述
+              </Text>
+              <ScrollArea.Autosize mah={140} type="auto">
+                <Text className="ubr-lightbox-note-txt">{note}</Text>
+              </ScrollArea.Autosize>
+            </div>
+          )}
+        </Stack>
       )}
     </Modal>
   )

@@ -32,7 +32,10 @@ export interface Checkin {
   name: string
   note: string
   rating: number
+  /** 主类型（= kinds[0]）。保留是为了兼容旧数据与简化查询 */
   kind: string
+  /** 类型标签，支持自定义；第一个是主类型，决定配色 */
+  kinds: string[]
   lng: number
   lat: number
   done: boolean

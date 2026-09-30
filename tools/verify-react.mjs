@@ -575,7 +575,7 @@ async function main() {
     for(const ty of ['mousedown','mouseup','click'])
       el.dispatchEvent(new MouseEvent(ty,{clientX:r.left+r.width/2,clientY:r.top+r.height*0.35,bubbles:true,cancelable:true,view:window,button:0}));
     await new Promise(r=>setTimeout(r,800));
-    const inp=[...document.querySelectorAll('input')].filter(i=>i.type==='text').pop();
+    const inp=[...document.querySelectorAll('.ubr-pane input')].find(e=>e.type==='text' && !String(e.className).includes('TagsInput'));
     if(!inp) return {form:false};
     setV(inp,'自检-待删'); await new Promise(r=>setTimeout(r,250));
 
@@ -634,7 +634,7 @@ async function main() {
     for(const ty of ['mousedown','mouseup','click'])
       el.dispatchEvent(new MouseEvent(ty,{clientX:r.left+r.width/2,clientY:r.top+r.height*0.5,bubbles:true,cancelable:true,view:window,button:0}));
     await new Promise(r=>setTimeout(r,800));
-    const inp=[...document.querySelectorAll('input')].filter(i=>i.type==='text').pop();
+    const inp=[...document.querySelectorAll('.ubr-pane input')].find(e=>e.type==='text' && !String(e.className).includes('TagsInput'));
     if(!inp) return {form:false};
     setV(inp,'列表删除自检'); await new Promise(r=>setTimeout(r,250));
     [...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存')?.click();
@@ -822,61 +822,135 @@ async function main() {
     && (detailHeader.下圆角||[]).every((v)=>parseFloat(v) === 0));
   await pressEsc();
 
-  // ⑦f 打卡点标记形态：路线类型显示序号，其余显示「缩略图 + 名称」
-  //   存储用的 seq 是全局递增的（所有打卡点共用一套），直接显示会出现
-  //   "只有一个路线点却显示 7"。所以序号按路线自身重新从 1 编号。
+  // ⑦f 打卡点标记形态：路线显示序号，其余是「立标小卡片」（缩略图 + 名称 + 类型）
+  //   自定义点位要能一眼和官方点位区分开，所以卡片刻意做得更大、带类型色左边条与底部尖角；
+  //   类型标签直接印在卡片上，不再统称「我的打卡」。
   await resetServerData()
   const kindToken = await adminToken()
-  const mkPoint = (name, kind, lng, lat) =>
+  const mkPoint = (name, kinds, lng, lat) =>
     fetch(`${BASE_URL}/api/checkins`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${kindToken}` },
-      body: JSON.stringify({ name, kind, rating: 4, note: '测试', lng, lat }),
+      body: JSON.stringify({ name, kinds, rating: 4, note: '测试', lng, lat }),
     }).then((r) => r.json())
 
-  // 交错创建：普通点先占掉 seq=1，路线点拿到 2/4/5 —— 用于验证序号会被重编为 1/2/3
-  await mkPoint('城堡机位', '必拍机位', 116.6838, 39.8562)
-  await mkPoint('路线·入口', '路线', 116.6810, 39.8550)
-  await mkPoint('黄油啤酒摊', '美食', 116.6845, 39.8558)
-  await mkPoint('路线·城堡', '路线', 116.6835, 39.8565)
-  await mkPoint('路线·出园', '路线', 116.6860, 39.8545)
+  // 交错创建：普通点先占 seq=1，路线点拿到 2/4/5 —— 验证序号会被重编为 1/2/3
+  await mkPoint('城堡机位', ['必拍机位'], 116.6838, 39.8562)
+  await mkPoint('路线·入口', ['路线'], 116.6810, 39.8550)
+  await mkPoint('黄油啤酒摊', ['美食', '自创类型'], 116.6845, 39.8558)
+  await mkPoint('路线·城堡', ['路线'], 116.6835, 39.8565)
+  await mkPoint('路线·出园', ['路线'], 116.6860, 39.8545)
 
   await reload();
   const kindMix = await ev(`(()=>{
     const pills=[...document.querySelectorAll('.pin-ck-lbl .cklbl')];
     const seqs=[...document.querySelectorAll('.pin-ck-seq .num')].map(n=>n.textContent.trim());
-    const names=pills.map(e=>e.querySelector('.nm')?.textContent||'');
+    const first=pills[0];
+    const poi=document.querySelector('.pin-ubr .mk');
+    const pr=first? first.getBoundingClientRect() : null;
+    const qr=poi? poi.getBoundingClientRect() : null;
     return {
-      胶囊数: pills.length,
+      卡片数: pills.length,
       序号图钉数: document.querySelectorAll('.pin-ck-seq').length,
       序号: seqs,
-      名称: names,
-      名称里没有数字: names.every((n)=>!/^\\d+\\./.test(n)),
-      兜底色: (()=>{const t=document.querySelector('.pin-ck-lbl .thumb');
-        return t? getComputedStyle(t).backgroundColor : null})(),
+      名称: pills.map(e=>e.querySelector('.nm')?.textContent||''),
+      类型: pills.map(e=>e.querySelector('.kd')?.textContent||'').sort(),
+      卡片尺寸: pr? [Math.round(pr.width), Math.round(pr.height)] : null,
+      比官方点位更大: (pr&&qr)? (pr.width*pr.height) > (qr.width*qr.height)*3 : null,
+      有缩略图槽: pills.every(e=>!!e.querySelector('.thumb')),
+      有类型色左条: first? parseFloat(getComputedStyle(first).borderLeftWidth) >= 2 : null,
+      有底部尖角: document.querySelectorAll('.pin-ck-lbl .tip').length === pills.length,
+      名称里没有数字: pills.every(e=>!/^\\d+\\./.test(e.querySelector('.nm')?.textContent||'')),
     };
   })()`);
-  check('打卡点标记形态（路线序号）', kindMix,
-    kindMix.胶囊数 === 2 && kindMix.序号图钉数 === 3
+  check('打卡点立标卡片·显示类型', kindMix,
+    kindMix.卡片数 === 2 && kindMix.序号图钉数 === 3
     && JSON.stringify(kindMix.序号) === JSON.stringify(['1','2','3'])   // 按路线重编，不是 2/4/5
     && kindMix.名称.includes('城堡机位') && kindMix.名称.includes('黄油啤酒摊')
-    && kindMix.名称里没有数字);
+    && kindMix.名称里没有数字
+    && kindMix.有缩略图槽 && kindMix.有类型色左条 && kindMix.有底部尖角
+    && kindMix.比官方点位更大 === true
+    // 自定义类型必须显示出来，而不是被统一成「我的打卡」
+    && kindMix.类型.includes('必拍机位') && kindMix.类型.some(t=>t.includes('自创类型')));
 
-  // 列表同样只在路线类型前加序号
+  // 列表同样只在路线类型前加序号，并显示完整类型
   await openList();
   await ev(`(async()=>{
     [...document.querySelectorAll('.ubr-tabs .mantine-Badge-root')].find(b=>b.textContent.includes('我的打卡'))?.click();
     await new Promise(r=>setTimeout(r,900)); return 1})()`, true);
   const listSeq = await ev(`(()=>{
     const names=[...document.querySelectorAll('.ubr-row-name')].map(n=>n.textContent.trim());
-    return {names, 带序号: names.filter((t)=>/^\\d+\\./.test(t))};
+    const kinds=[...document.querySelectorAll('.ubr-row')].map(r=>r.querySelector('.ubr-row-meta span')?.textContent||'');
+    return {names, 带序号: names.filter((t)=>/^\\d+\\./.test(t)), kinds};
   })()`);
-  check('列表仅路线带序号', listSeq,
+  check('列表仅路线带序号·显示类型', listSeq,
     listSeq.带序号.length === 3
     && listSeq.带序号.every((t) => t.includes('路线·'))
-    && listSeq.names.some((t) => t === '城堡机位'));
+    && listSeq.names.some((t) => t === '城堡机位')
+    && listSeq.kinds.some((k) => k.includes('自创类型')));
+  await pressEsc();
 
-  // 由官网点位转来的打卡点：没实拍图时用官方 64×64 小图兜底
+  // ⑦f2 表单支持自定义类型（TagsInput）
+  //   用 CDP 真实键盘输入 —— 合成的 KeyboardEvent 不会被 Mantine 的 TagsInput 接受，
+  //   会误判成"功能不可用"。
+  const customKind = await ev(`(async()=>{
+    [...document.querySelectorAll('.ubr-map-tools button')]
+      .find(b=>b.getAttribute('aria-label')==='添加打卡点')?.click();
+    await new Promise(r=>setTimeout(r,400));
+    const el=document.querySelector('.leaflet-container'), r=el.getBoundingClientRect();
+    for(const ty of ['mousedown','mouseup','click'])
+      el.dispatchEvent(new MouseEvent(ty,{clientX:r.left+r.width/2,clientY:r.top+r.height*0.3,
+        bubbles:true,cancelable:true,view:window,button:0}));
+    await new Promise(r=>setTimeout(r,900));
+
+    const hasTagsInput = !!document.querySelector('.mantine-TagsInput-root');
+    const field = document.querySelector('.mantine-TagsInput-inputField');
+    if(!field) return {hasTagsInput, field:false};
+    const fr = field.getBoundingClientRect();
+    return {hasTagsInput, field:true, x:fr.left+fr.width/2, y:fr.top+fr.height/2,
+      说明文案: document.body.innerText.includes('第一个为「主类型」')};
+  })()`, true);
+
+  if (customKind.field) {
+    // 真实鼠标聚焦 + 真实键盘输入
+    await realClick(customKind.x, customKind.y);
+    await sleep(400);
+    for (const tag of ['日出蓝调', '三脚架位']) {
+      await send('Input.insertText', { text: tag });
+      await sleep(250);
+      await send('Input.dispatchKeyEvent', { type:'keyDown', key:'Enter', code:'Enter', windowsVirtualKeyCode:13, nativeVirtualKeyCode:13, text:'\r' });
+      await send('Input.dispatchKeyEvent', { type:'keyUp', key:'Enter', code:'Enter', windowsVirtualKeyCode:13, nativeVirtualKeyCode:13 });
+      await sleep(400);
+    }
+  }
+  const kindSaved = await ev(`(async()=>{
+    const pills=[...document.querySelectorAll('.mantine-Pill-root')].map(c=>c.textContent.trim());
+    const nameInput=[...document.querySelectorAll('.ubr-pane input')]
+      .find(e=>e.type==='text' && !String(e.className).includes('TagsInput'));
+    const setV=(e,v)=>{Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(e,v);
+      e.dispatchEvent(new Event('input',{bubbles:true}))};
+    if(nameInput) setV(nameInput,'自定义类型测试');
+    await new Promise(r=>setTimeout(r,300));
+    [...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存')?.click();
+    await new Promise(r=>setTimeout(r,2200));
+    const list=((await (await fetch('/api/checkins')).json()).results||[])
+      .filter(m=>m.name==='自定义类型测试');
+    const card=[...document.querySelectorAll('.pin-ck-lbl .kd')]
+      .map(e=>e.textContent).find(t=>t.includes('日出蓝调'));
+    return {标签: pills, 服务端kinds: list[0]? list[0].kinds : null,
+      卡片显示类型: card || null};
+  })()`, true);
+  check('表单支持自定义类型', customKind && kindSaved,
+    customKind.hasTagsInput && customKind.说明文案
+    && kindSaved.标签.includes('日出蓝调') && kindSaved.标签.includes('三脚架位')
+    && Array.isArray(kindSaved.服务端kinds)
+    && kindSaved.服务端kinds.includes('日出蓝调')      // 自定义标签落库
+    && kindSaved.服务端kinds.includes('三脚架位')
+    && !!kindSaved.卡片显示类型                        // 并显示在地图卡片上
+    && kindSaved.卡片显示类型.includes('日出蓝调'));
+  await pressEsc();
+
+  // 从官网点位加入的打卡点，没实拍图时用官方 64×64 小图兜底
   const fromPoi = await ev(`(async()=>{
     const p=document.querySelector('.pin-ubr');
     if(!p) return {pin:false};
@@ -997,7 +1071,7 @@ async function main() {
     await new Promise(r=>setTimeout(r,800));
     const setV=(e,v)=>{Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(e,v);
       e.dispatchEvent(new Event('input',{bubbles:true}))};
-    const inp=[...document.querySelectorAll('input')].filter(i=>i.type==='text').pop();
+    const inp=[...document.querySelectorAll('.ubr-pane input')].find(e=>e.type==='text' && !String(e.className).includes('TagsInput'));
     if(!inp) return {form:false};
     setV(inp,'自检机位'); await new Promise(r=>setTimeout(r,250));
 
@@ -1061,7 +1135,7 @@ async function main() {
     // 名字填好再保存，供后面核对服务端
     const setV=(e,v)=>{Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set.call(e,v);
       e.dispatchEvent(new Event('input',{bubbles:true}))};
-    const inp=[...document.querySelectorAll('input')].filter(i=>i.type==='text').pop();
+    const inp=[...document.querySelectorAll('.ubr-pane input')].find(e=>e.type==='text' && !String(e.className).includes('TagsInput'));
     if(inp) setV(inp,'粘贴截图测试');
     await new Promise(rr=>setTimeout(rr,250));
     [...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='保存')?.click();
@@ -1175,6 +1249,74 @@ async function main() {
     && afterEsc1.大图 === false                        // 一次 ESC 关大图
     && afterEsc1.详情 === true && afterEsc1.抽屉 === true   // 详情不能跟着一起关
     && afterEsc2 === false);                           // 二次 ESC 才关详情
+
+  // ⑪3 大图下方展示完整描述、自适应尺寸、不含「新标签页打开原图」
+  //   详情里的描述被 lineClamp 截断（只显示 3 行），大图下方给出全文并可滚动；
+  //   图片尺寸完全交给视口约束，放大交给浏览器原生手势（触控板双指 / 浏览器缩放）。
+  const lightboxNote = await (async () => {
+    // 先给点位写一段长描述（窄屏下必然超高，才能验证滚动）
+    await resetServerData()
+    const t = await adminToken()
+    const created = await fetch(`${BASE_URL}/api/checkins`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', authorization: `Bearer ${t}` },
+      body: JSON.stringify({
+        name: '长描述机位', kinds: ['必拍机位'], lng: 116.6838, lat: 39.8562,
+        note: '日落后约 20 分钟进入蓝调时段，天空与城堡灯光的光比最舒服，建议提前 40 分钟到位占位，带三脚架与长焦。'.repeat(10),
+      }),
+    }).then((r) => r.json())
+    await fetch(`${BASE_URL}/api/checkins/${created.id}/photo`, {
+      method: 'PUT',
+      headers: { authorization: `Bearer ${t}`, 'content-type': 'image/webp' },
+      body: await (await fetch(`${BASE_URL}/data/img/marker/481.webp`)).arrayBuffer(),
+    })
+
+    await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true })
+    await reload()
+    const p = await ev(`(() => {const el=document.querySelector('.pin-ck-lbl');
+      const r=el.getBoundingClientRect(); return {x:r.left+r.width/2, y:r.top+r.height/2};})()`)
+    await realClick(p.x, p.y)
+    await sleep(1800)
+    const detailClipped = await ev(`(() => {const n=document.querySelector('.ubr-detail-note');
+      if(!n) return null; const cs=getComputedStyle(n);
+      return {lines: cs.webkitLineClamp, clipped: n.scrollHeight > n.clientHeight + 2};})()`)
+
+    const tb = await rectOf('.ubr-detail-thumb-btn')
+    if (tb) { await realClick(tb.x, tb.y); await sleep(1500) }
+
+    const view = await ev(`(() => {
+      const img=document.querySelector('.ubr-lightbox-img');
+      const note=document.querySelector('.ubr-lightbox-note');
+      const modal=document.querySelector('.mantine-Modal-content');
+      if(!img) return {opened:false};
+      const ir=img.getBoundingClientRect(), mr=modal.getBoundingClientRect();
+      const bodies=note? [...note.querySelectorAll('p,div')].filter(e=>!e.children.length && e.textContent.trim()) : [];
+      const body=bodies[bodies.length-1];
+      const vp=note? (note.querySelector('[data-radix-scroll-area-viewport]')||note.querySelector('.mantine-ScrollArea-viewport')) : null;
+      return {
+        opened:true,
+        有描述区:!!note,
+        描述字数: body? body.textContent.length : 0,
+        可滚动: vp? vp.scrollHeight > vp.clientHeight : null,
+        图片未超屏: ir.top>=0 && ir.bottom<=innerHeight && ir.left>=0 && ir.right<=innerWidth,
+        整层未超屏: mr.top>=0 && mr.bottom<=innerHeight,
+        无新标签页按钮: !document.querySelector('.mantine-Modal-content a[target="_blank"]'),
+      };
+    })()`)
+    return { detailClipped, view }
+  })()
+  check('大图显示完整描述·自适应·无外链', lightboxNote,
+    lightboxNote.detailClipped && Number(lightboxNote.detailClipped.lines) > 0
+    && lightboxNote.detailClipped.clipped === true          // 详情里确实被截断
+    && lightboxNote.view.opened && lightboxNote.view.有描述区
+    && lightboxNote.view.描述字数 > 400                      // 大图里给的是全文
+    && lightboxNote.view.可滚动 === true                     // 超高时可滚动
+    && lightboxNote.view.图片未超屏 === true
+    && lightboxNote.view.整层未超屏 === true
+    && lightboxNote.view.无新标签页按钮 === true);
+  await pressEsc()
+  await pressEsc()
+  await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true })
 
   // ⑫ Mantine Drawer 动效：进场需有中间帧，退场后节点移除
   //   必须先收起可能残留的详情抽屉，否则 fab 处于隐藏态，

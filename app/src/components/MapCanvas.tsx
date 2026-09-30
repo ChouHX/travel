@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
-import { BRAND, CAT_MAP, COVER, GAP_TILE, KIND_COLOR, MAX_ZOOM, MIN_ZOOM, OK, showsSeq, tileUrl } from '../constants'
+import {
+  BRAND, CAT_MAP, COVER, GAP_TILE, kindColorFor, kindsText,
+  MAX_ZOOM, MIN_ZOOM, OK, showsSeq, tileUrl,
+} from '../constants'
 import type { Checkin, Editing, Poi } from '../types'
 
 export interface Focus {
@@ -85,15 +88,29 @@ function poiIcon(poi: Poi, labeled: boolean, active: boolean, zoom: number) {
  * 其余类型一律「缩略图 + 名称」，因为自定义点位真正需要的是"这是哪儿"，
  * 全局递增的序号对它们没有信息量。
  */
+/**
+ * 打卡点标记。两种形态：
+ *
+ * - 「路线」类型 → 序号图钉。序号表达走访顺序，是这个类型存在的意义。
+ * - 其余类型 → 立标小卡片：缩略图 + 名称 + 类型标签。
+ *
+ * 卡片刻意做得比官方点位标记更醒目（更大、带类型色边框与投影、底部有指向尖角），
+ * 因为自定义点位是用户自己标的，需要一眼能从官方点位里区分出来。
+ * 类型标签直接显示在卡片上，不再统称「我的打卡」。
+ */
+const CK_CARD_W = 118
+const CK_CARD_H = 48
+
 function ckIcon(
   mark: Checkin,
   opts: { selected: boolean; fresh: boolean; seq?: number; thumb?: string },
 ) {
   const { selected, fresh, seq, thumb } = opts
-  const color = mark.done ? OK : (KIND_COLOR[mark.kind] ?? BRAND)
+  const kinds = mark.kinds ?? [mark.kind]
+  const color = mark.done ? OK : kindColorFor(kinds)
   const name = mark.name || '未命名'
 
-  if (showsSeq(mark.kind)) {
+  if (showsSeq(kinds)) {
     const cls = `pin-ck pin-ck-seq${selected ? ' sel' : ''}${mark.done ? ' done' : ''}${fresh ? ' pop' : ''}`
     return L.divIcon({
       className: cls,
@@ -112,12 +129,17 @@ function ckIcon(
   const cls = `pin-ck pin-ck-lbl${selected ? ' sel' : ''}${mark.done ? ' done' : ''}${fresh ? ' pop' : ''}`
   return L.divIcon({
     className: cls,
-    iconAnchor: [12, 12],
+    iconSize: [CK_CARD_W, CK_CARD_H],
+    iconAnchor: [CK_CARD_W / 2, CK_CARD_H],
     html:
       `<div class="cklbl" style="--c:${color}">` +
       `<span class="thumb">${pic}<span class="fb"></span></span>` +
+      '<span class="txt">' +
       `<span class="nm">${escapeHtml(name)}</span>` +
-      '</div>',
+      `<span class="kd">${escapeHtml(kindsText(kinds))}</span>` +
+      '</span>' +
+      '</div>' +
+      '<span class="tip"></span>',
   })
 }
 

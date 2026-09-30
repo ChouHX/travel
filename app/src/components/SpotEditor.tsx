@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Button, Chip, Group, Image, Rating, Stack, Text, Textarea, TextInput } from '@mantine/core'
-import { KINDS } from '../constants'
+import { Button, Group, Image, Rating, Stack, TagsInput, Text, Textarea, TextInput } from '@mantine/core'
+import { KINDS, ROUTE_KIND } from '../constants'
 import type { Checkin, Editing } from '../types'
 import { compressToWebp, fmtBytes, type CompressedImage } from '../lib/image'
 
@@ -8,7 +8,8 @@ export interface EditorResult {
   name: string
   note: string
   rating: number
-  kind: string
+  /** 类型标签，第一个为主类型 */
+  kinds: string[]
   /** 本次新选并压缩好的照片；undefined 表示未改动 */
   photo?: CompressedImage
   photoCleared?: boolean
@@ -33,7 +34,7 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
   const [name, setName] = useState('')
   const [note, setNote] = useState('')
   const [rating, setRating] = useState(0)
-  const [kind, setKind] = useState<string>(KINDS[0])
+  const [kinds, setKinds] = useState<string[]>([KINDS[0]])
   const [photo, setPhoto] = useState<CompressedImage | null>(null)
   const [photoCleared, setPhotoCleared] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -52,7 +53,7 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
     setName(mark?.name ?? '')
     setNote(mark?.note ?? '')
     setRating(mark?.rating ?? 0)
-    setKind(mark?.kind ?? KINDS[0])
+    setKinds(mark?.kinds?.length ? mark.kinds : [mark?.kind ?? KINDS[0]])
     setPhoto(null)
     setPhotoCleared(false)
     setErr(null)
@@ -143,18 +144,22 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
       />
 
       <div>
-        <Text size="xs" c="dimmed" mb={6}>
-          类型
+        <TagsInput
+          label="类型"
+          description="可输入自定义类型；第一个为「主类型」，决定地图上的配色"
+          placeholder="回车添加，也可从下拉里选"
+          value={kinds}
+          onChange={(v) => setKinds(v.slice(0, 6))}
+          data={KINDS}
+          maxTags={6}
+          maxLength={20}
+          clearable
+          splitChars={[',', '，', '、', ' ']}
+          styles={{ label: { fontSize: 10, letterSpacing: '0.1em', color: 'var(--ubr-ink-faint)' } }}
+        />
+        <Text size="xs" c="dimmed" mt={4}>
+          选「{ROUTE_KIND}」时地图上会显示走访序号，其余类型显示为缩略图卡片
         </Text>
-        <Chip.Group value={kind} onChange={(v) => setKind(v as string)}>
-          <Group gap={6}>
-            {KINDS.map((k) => (
-              <Chip key={k} value={k} variant="light" color="sky">
-                {k}
-              </Chip>
-            ))}
-          </Group>
-        </Chip.Group>
       </div>
 
       <div>
@@ -244,7 +249,7 @@ export function SpotEditor({ editing, mark, onSave, onCancel, onDelete }: Props)
         <Button
           color="sky"
           style={{ flex: 1 }}
-          onClick={() => onSave({ name, note, rating, kind, photo: photo ?? undefined, photoCleared })}
+          onClick={() => onSave({ name, note, rating, kinds, photo: photo ?? undefined, photoCleared })}
           disabled={busy}
         >
           保存

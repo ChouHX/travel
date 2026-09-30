@@ -32,6 +32,8 @@ db.exec(`
     note        TEXT    NOT NULL DEFAULT '',
     rating      INTEGER NOT NULL DEFAULT 0,
     kind        TEXT    NOT NULL DEFAULT '其他',
+    -- 类型标签（JSON 数组）。kind 保留为第一个标签，用于兼容旧数据与简单查询。
+    kinds       TEXT,
     lng         REAL    NOT NULL,
     lat         REAL    NOT NULL,
     done        INTEGER NOT NULL DEFAULT 0,
@@ -61,7 +63,55 @@ db.exec(`
   );
 `)
 
+/* 老库补 kinds 列。用 JS 回填而不是 SQL 的 json_array()：
+   JSON1 扩展是否编译进 node:sqlite 不由我们决定，不依赖它更稳。 */
+{
+  const cols = db.prepare('PRAGMA table_info(checkins)').all().map((c) => c.name)
+  if (!cols.includes('kinds')) {
+    db.exec('ALTER TABLE checkins ADD COLUMN kinds TEXT')
+    const rows = db.prepare('SELECT id, kind FROM checkins WHERE kinds IS NULL').all()
+    const upd = db.prepare('UPDATE checkins SET kinds = ? WHERE id = ?')
+    for (const r of rows) upd.run(JSON.stringify([r.kind || '其他']), r.id)
+    console.log(`[db] 已为 ${rows.length} 条旧记录补齐 kinds 字段`)
+  }
+}
+
 const newId = () => crypto.randomBytes(8).toString('hex')
+
+/** kinds 列的解析：优先用新字段，缺失时回落到 kind */
+export function parseKinds(row) {
+  if (row.kinds) {
+    try {
+      const arr = JSON.parse(row.kinds)
+      if (Array.isArray(arr)) {
+        const clean = arr.map((k) => String(k).trim()).filter(Boolean).slice(0, 6)
+        if (clean.length) return clean
+      }
+    } catch { /* 落到下面的回落 */ }
+  }
+  return [row.kind || '其他']
+}
+
+/** 归一化类型标签：优先取 kinds，退回 kind；去重、限长、限量 */
+export function normalizeKinds(list) {
+  const out = []
+  for (const raw of Array.isArray(list) ? list : []) {
+    const k = String(raw ?? '').trim().slice(0, 20)
+    if (!k || out.includes(k)) continue
+    out.push(k)
+    if (out.length >= 6) break
+  }
+  return out
+}
+
+/** 从入参或既有记录里取出类型标签 */
+function kindsOf(input, current = null) {
+  const fromInput = normalizeKinds(input?.kinds)
+  if (fromInput.length) return fromInput
+  if (input?.kind) return normalizeKinds([input.kind])
+  if (current) return parseKinds(current)
+  return ['其他']
+}
 
 /** 数据库行 → 前端使用的形状（字段名与本地版保持一致，减少前端改动面） */
 export function rowToCheckin(row) {
@@ -74,6 +124,7 @@ export function rowToCheckin(row) {
     note: row.note,
     rating: row.rating,
     kind: row.kind,
+    kinds: parseKinds(row),
     lng: row.lng,
     lat: row.lat,
     done: !!row.done,
@@ -123,15 +174,16 @@ export function createCheckin(input) {
     const next = db.prepare('SELECT COALESCE(MAX(seq), 0) + 1 AS n FROM checkins').get().n
     db.prepare(`
       INSERT INTO checkins
-        (id, seq, name, note, rating, kind, lng, lat, done, from_poi, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (id, seq, name, note, rating, kind, kinds, lng, lat, done, from_poi, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       id,
       Number.isFinite(input.seq) ? input.seq : next,
       input.name ?? '',
       input.note ?? '',
       input.rating ?? 0,
-      input.kind ?? '其他',
+      kindsOf(input)[0],
+      JSON.stringify(kindsOf(input)),
       input.lng,
       input.lat,
       input.done ? 1 : 0,
@@ -155,7 +207,8 @@ export function updateCheckin(id, patch) {
     name: patch.name ?? current.name,
     note: patch.note ?? current.note,
     rating: patch.rating ?? current.rating,
-    kind: patch.kind ?? current.kind,
+    kind: kindsOf(patch, current)[0],
+    kinds: JSON.stringify(kindsOf(patch, current)),
     lng: patch.lng ?? current.lng,
     lat: patch.lat ?? current.lat,
     done: patch.done === undefined ? current.done : (patch.done ? 1 : 0),
@@ -168,12 +221,12 @@ export function updateCheckin(id, patch) {
 
   db.prepare(`
     UPDATE checkins SET
-      name = ?, note = ?, rating = ?, kind = ?, lng = ?, lat = ?, done = ?,
+      name = ?, note = ?, rating = ?, kind = ?, kinds = ?, lng = ?, lat = ?, done = ?,
       photo = ?, photo_type = ?, photo_w = ?, photo_h = ?, photo_bytes = ?,
       updated_at = ?
     WHERE id = ?
   `).run(
-    merged.name, merged.note, merged.rating, merged.kind, merged.lng, merged.lat, merged.done,
+    merged.name, merged.note, merged.rating, merged.kind, merged.kinds, merged.lng, merged.lat, merged.done,
     merged.photo, merged.photo_type, merged.photo_w, merged.photo_h, merged.photo_bytes,
     new Date().toISOString(), id,
   )

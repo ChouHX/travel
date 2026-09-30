@@ -69,7 +69,7 @@ export function App() {
    * 大图查看。状态放在 App 而不是详情组件里 —— 打开时要临时关掉抽屉的 ESC 响应，
    * 这需要在上层协调（原因见 PhotoViewer 的注释）。
    */
-  const [viewer, setViewer] = useState<{ src: string; title: string } | null>(null)
+  const [viewer, setViewer] = useState<{ src: string; title: string; note?: string } | null>(null)
 
   const mapRef = useRef<LeafletMap | null>(null)
   const toastTimer = useRef<number | undefined>(undefined)
@@ -137,7 +137,7 @@ export function App() {
       (m) =>
         (m.name || '').toLowerCase().includes(q) ||
         (m.note || '').toLowerCase().includes(q) ||
-        (m.kind || '').toLowerCase().includes(q),
+        (m.kinds ?? [m.kind]).join(' ').toLowerCase().includes(q),
     )
   }, [ck.marks, q, tab])
 
@@ -234,10 +234,10 @@ export function App() {
         // 先落库拿到 id，再传照片（照片接口需要点位 id）
         const id = editing.id
           ? (await ck.update(editing.id, {
-              name: data.name, note: data.note, rating: data.rating, kind: data.kind,
+              name: data.name, note: data.note, rating: data.rating, kinds: data.kinds,
             })).id
           : (await ck.create({
-              name: data.name, note: data.note, rating: data.rating, kind: data.kind,
+              name: data.name, note: data.note, rating: data.rating, kinds: data.kinds,
               lng: editing.lng, lat: editing.lat,
             })).id
 
@@ -518,15 +518,16 @@ export function App() {
               onRemoveMark={handleRemove}
               onClose={closeDrawer}
               routeSeq={routeSeq}
-              onZoom={(src) =>
+              onZoom={(src) => {
+                // 详情里的描述被限行截断，大图下方给出完整内容
+                const m = selected?.kind === 'checkin' ? ck.marks.find((x) => x.id === selected.id) : null
+                const p = selected?.kind === 'poi' ? POIS.find((x) => x.id === selected.id) : null
                 setViewer({
                   src,
-                  title:
-                    (selected?.kind === 'checkin'
-                      ? ck.marks.find((m) => m.id === selected.id)?.name
-                      : POIS.find((p) => p.id === selected?.id)?.name) || '查看大图',
+                  title: m?.name || p?.name || '查看大图',
+                  note: (m?.note || '').trim() || undefined,
                 })
-              }
+              }}
               fallbackImg={
                 activeMark?.fromPoi
                   ? POIS.find((p) => p.id === activeMark.fromPoi)?.img
@@ -614,6 +615,7 @@ export function App() {
       <PhotoViewer
         src={viewer?.src ?? null}
         title={viewer?.title ?? ''}
+        note={viewer?.note}
         onClose={() => setViewer(null)}
       />
 

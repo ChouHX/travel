@@ -65,8 +65,39 @@ export const KINDS = [
   '必拍机位', '建筑外观', '美食', '演出', ROUTE_KIND, '角色合影', '夜景', '其他',
 ]
 
-/** 只有路线类型才显示序号 */
-export const showsSeq = (kind: string) => kind === ROUTE_KIND
+/** 只有路线类型才显示序号。类型现在可以是多个标签，只要包含路线就算 */
+export const showsSeq = (kinds: string | string[] | undefined) => {
+  const list = Array.isArray(kinds) ? kinds : (kinds ? [kinds] : [])
+  return list.includes(ROUTE_KIND)
+}
+
+/**
+ * 自定义类型标签的配色。
+ *
+ * 预设类型有固定色；用户自定义的标签从这组色里按字符串哈希稳定取一个，
+ * 这样同一个标签在任何设备上颜色都一致，相邻点位之间也有区分度。
+ */
+const CUSTOM_KIND_COLORS = [
+  '#3f9e8e', '#7a6fc4', '#c48a3f', '#4f86e8', '#c05a8a',
+  '#5aa05a', '#b06a4a', '#3f9aa8', '#8a6fc0', '#a07a3f',
+]
+
+export function kindColorFor(kinds: string | string[] | undefined): string {
+  const list = Array.isArray(kinds) ? kinds : (kinds ? [kinds] : [])
+  for (const k of list) {
+    if (KIND_COLOR[k]) return KIND_COLOR[k]
+  }
+  const seed = list[0] ?? ''
+  let h = 5381
+  for (let i = 0; i < seed.length; i++) h = ((h << 5) + h + seed.charCodeAt(i)) >>> 0
+  return CUSTOM_KIND_COLORS[h % CUSTOM_KIND_COLORS.length]
+}
+
+/** 展示用的类型文本 */
+export const kindsText = (kinds: string | string[] | undefined) => {
+  const list = Array.isArray(kinds) ? kinds : (kinds ? [kinds] : [])
+  return list.join(' · ')
+}
 
 export const KIND_COLOR: Record<string, string> = {
   必拍机位: '#1f9ef5',

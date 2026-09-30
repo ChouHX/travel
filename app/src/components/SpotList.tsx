@@ -1,7 +1,7 @@
 import { ActionIcon, Tooltip } from '@mantine/core'
 import type { CSSProperties } from 'react'
 import { ConfirmPopover } from './ConfirmPopover'
-import { BRAND, CAT_MAP, OK, showsSeq } from '../constants'
+import { BRAND, CAT_MAP, kindsText, OK, showsSeq } from '../constants'
 import type { Checkin, Poi } from '../types'
 
 interface Props {
@@ -84,11 +84,11 @@ export function SpotList({
               <div className="ubr-row-main">
                 <div className="ubr-row-name">
                   {/* 只有路线类型带序号：它表达走访顺序，其余类型序号没有信息量 */}
-                  {showsSeq(m.kind) && routeSeq[m.id] ? `${routeSeq[m.id]}. ` : ''}
+                  {showsSeq(m.kinds ?? [m.kind]) && routeSeq[m.id] ? `${routeSeq[m.id]}. ` : ''}
                   {m.name || '未命名'}
                 </div>
                 <div className="ubr-row-meta">
-                  <span>{m.kind}</span>
+                  <span>{kindsText(m.kinds ?? [m.kind])}</span>
                   {m.rating > 0 && <span className="star">{'★'.repeat(m.rating)}</span>}
                   {m.note && (
                     <span className="mono">
